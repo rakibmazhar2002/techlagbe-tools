@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Primary Meta Tags -->
-  <title>Image to PDF Converter — Merge Photos to PDF In Browser</title>
-  <meta name="title" content="Image to PDF Converter — Merge Photos to PDF In Browser">
-  <meta name="description" content="Convert JPG, PNG, and WebP images to a single high-quality PDF document directly in your browser. 100% free, private client-side processing with zero server uploads.">
-  <meta name="keywords" content="image to pdf, convert jpg to pdf, png to pdf, photo to pdf merger, multi image to pdf, free client-side pdf converter">
+  <title>Universal Image Format Converter — PNG, JPG, WebP Online</title>
+  <meta name="title" content="Universal Image Format Converter — PNG, JPG, WebP Online">
+  <meta name="description" content="Convert images between PNG, JPG, and WebP formats directly in your browser. Fast, 100% private client-side conversion using HTML5 Canvas with zero server uploads.">
+  <meta name="keywords" content="png to jpg, jpg to png, png to webp, webp to png, image format converter, convert photo online, client side image converter">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://example.com/image-to-pdf.html">
+  <link rel="canonical" href="https://example.com/image-converter.html">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://example.com/image-to-pdf.html">
-  <meta property="og:title" content="Image to PDF Converter — Fast, Secure & Free">
-  <meta property="og:description" content="Merge multiple photos into a single PDF document right inside your browser. No files are ever uploaded.">
+  <meta property="og:url" content="https://example.com/image-converter.html">
+  <meta property="og:title" content="Universal Image Format Converter — Fast, Secure & Free">
+  <meta property="og:description" content="Convert PNG to JPG, JPG to PNG, PNG to WebP, and WebP to PNG right in your browser. 100% private.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=630&q=80">
 
   <!-- Google Fonts -->
@@ -48,15 +48,21 @@
       }
     }
   </script>
-
-  <!-- jsPDF Library (Client-Side PDF Generation) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   
   <style>
     .ad-pattern {
       background-color: #f8fafc;
       background-image: radial-gradient(#cbd5e1 0.75px, transparent 0.75px);
       background-size: 10px 10px;
+    }
+    .checkered-bg {
+      background-color: #ffffff;
+      background-image: linear-gradient(45deg, #f1f5f9 25%, transparent 25%), 
+                        linear-gradient(-45deg, #f1f5f9 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #f1f5f9 75%), 
+                        linear-gradient(-45deg, transparent 75%, #f1f5f9 75%);
+      background-size: 16px 16px;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
     }
   </style>
 </head>
@@ -80,11 +86,11 @@
           </div>
         </a>
 
-        <!-- Navigation Links -->
+        <!-- Desktop Navigation Links -->
         <nav class="hidden md:flex items-center gap-1 lg:gap-2">
           <a href="index.html#tools-section" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">Tools Directory</a>
           <a href="#how-it-works" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">How It Works</a>
-          <a href="#seo-article" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">Why Client-Side?</a>
+          <a href="#seo-article" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">Format Comparison</a>
         </nav>
 
         <!-- CTA Back to All Tools -->
@@ -128,132 +134,181 @@
 
       <!-- TOOL HEADER -->
       <section class="text-center pt-4">
+        <!-- Breadcrumb -->
         <nav class="flex justify-center items-center gap-2 text-xs font-semibold text-slate-400 mb-3">
           <a href="index.html" class="hover:text-brand-600 transition">Home</a>
           <span>/</span>
-          <span class="text-slate-700">Image to PDF Converter</span>
+          <span class="text-slate-700">Image Format Converter</span>
         </nav>
 
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-          Image to PDF Converter
+          Image Format Converter
         </h1>
         <p class="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal">
-          Combine JPG, PNG, and WebP images into a single professional PDF document. Processed 100% inside your browser for total privacy.
+          Convert seamlessly between PNG, JPG, and modern WebP. Processed directly in your browser with hardware-accelerated HTML5 Canvas.
         </p>
+
+        <!-- Quick format badges -->
+        <div class="flex flex-wrap justify-center gap-2 mt-4">
+          <span class="text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200/60 px-3 py-1 rounded-full">PNG to JPG</span>
+          <span class="text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-200/60 px-3 py-1 rounded-full">JPG to PNG</span>
+          <span class="text-xs font-bold bg-sky-50 text-sky-700 border border-sky-200/60 px-3 py-1 rounded-full">PNG to WebP</span>
+          <span class="text-xs font-bold bg-teal-50 text-teal-700 border border-teal-200/60 px-3 py-1 rounded-full">WebP to PNG</span>
+        </div>
       </section>
 
       <!-- ================= INTERACTIVE TOOL WORKSPACE ================= -->
       <section class="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden p-6 sm:p-10">
         
-        <!-- DROPZONE -->
+        <!-- DROPZONE (VISIBLE INITIALLY) -->
         <div 
           id="dropZone" 
           class="border-2 border-dashed border-slate-300 hover:border-brand-500 bg-slate-50/70 hover:bg-blue-50/40 rounded-2xl p-8 sm:p-12 text-center transition-all cursor-pointer group"
           onclick="document.getElementById('fileInput').click()"
         >
-          <input type="file" id="fileInput" class="hidden" accept="image/jpeg,image/png,image/webp" multiple>
+          <input type="file" id="fileInput" class="hidden" accept="image/jpeg,image/png,image/webp">
           
-          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:scale-110 transition-transform">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </div>
-          <h3 class="text-lg font-bold text-slate-800">Choose images or drag & drop here</h3>
-          <p class="text-xs text-slate-500 mt-1.5">Select multiple JPG, PNG, or WebP files to combine into one PDF</p>
+          <h3 class="text-lg font-bold text-slate-800">Select an image to convert</h3>
+          <p class="text-xs text-slate-500 mt-1.5">Drop your JPG, PNG, or WebP file here (Max: 50MB)</p>
           
           <div class="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-semibold text-sm shadow-md shadow-brand-500/20 transition">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Select Images
+            Choose Local File
           </div>
         </div>
 
-        <!-- CONTROLS & THUMBNAILS GALLERY (HIDDEN UNTIL FILES ARE ADDED) -->
-        <div id="workspacePanel" class="hidden space-y-8 mt-6">
+        <!-- CONTROLS & COMPARISON PANEL (ACTIVATED ON FILE LOAD) -->
+        <div id="workspacePanel" class="hidden space-y-8">
           
-          <!-- CONFIGURATION TOOLBAR -->
+          <!-- CONVERSION SETTINGS BAR -->
           <div class="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200">
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
               
-              <!-- Page Orientation -->
+              <!-- Target Format Selection -->
               <div>
-                <label for="pdfOrientation" class="block text-xs font-bold text-slate-700 mb-1.5">Page Orientation</label>
-                <select id="pdfOrientation" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500">
-                  <option value="portrait">Portrait (Vertical)</option>
-                  <option value="landscape">Landscape (Horizontal)</option>
-                  <option value="auto">Auto (Match Image)</option>
+                <label for="targetFormatSelect" class="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
+                  Convert To Format:
+                </label>
+                <select 
+                  id="targetFormatSelect" 
+                  class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 shadow-xs"
+                  onchange="convertImageFormat()"
+                >
+                  <option value="image/jpeg">JPG (.jpg) — Best for Photographs</option>
+                  <option value="image/png">PNG (.png) — Lossless with Alpha Transparency</option>
+                  <option value="image/webp">WebP (.webp) — Modern Next-Gen Format</option>
                 </select>
               </div>
 
-              <!-- Page Format -->
-              <div>
-                <label for="pdfFormat" class="block text-xs font-bold text-slate-700 mb-1.5">Page Size</label>
-                <select id="pdfFormat" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500">
-                  <option value="a4">Standard A4</option>
-                  <option value="letter">US Letter</option>
-                  <option value="fit">Fit to Image Size</option>
-                </select>
-              </div>
-
-              <!-- Margins -->
-              <div>
-                <label for="pdfMargin" class="block text-xs font-bold text-slate-700 mb-1.5">Page Margins</label>
-                <select id="pdfMargin" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500">
-                  <option value="none">No Margin (Full Bleed)</option>
-                  <option value="small">Small Margin (10mm)</option>
-                  <option value="large">Big Margin (20mm)</option>
-                </select>
+              <!-- Quality Control (for JPG/WebP) -->
+              <div id="qualityContainer">
+                <div class="flex justify-between items-center mb-1.5">
+                  <label for="qualitySlider" class="text-xs font-bold text-slate-700 uppercase tracking-wider">Output Quality</label>
+                  <span id="qualityVal" class="text-xs font-extrabold text-brand-600 bg-brand-50 px-2 py-0.5 rounded border border-brand-200">92%</span>
+                </div>
+                <input 
+                  type="range" 
+                  id="qualitySlider" 
+                  min="10" 
+                  max="100" 
+                  value="92" 
+                  class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600"
+                  oninput="updateQualityLabel(); convertImageFormat();"
+                >
+                <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+                  <span>Standard</span>
+                  <span>High Fidelity</span>
+                  <span>Maximum (100%)</span>
+                </div>
               </div>
 
             </div>
 
-            <!-- Action Toolbar -->
-            <div class="mt-6 flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-200">
-              <div class="flex items-center gap-3">
-                <button 
-                  onclick="document.getElementById('fileInput').click()" 
-                  class="px-4 py-2 text-xs font-semibold text-brand-600 bg-brand-50 hover:bg-brand-100 rounded-xl border border-brand-200 transition flex items-center gap-1.5"
+            <!-- Switch File Option -->
+            <div class="mt-4 pt-4 border-t border-slate-200 flex justify-between items-center">
+              <button 
+                onclick="resetConverter()" 
+                class="text-xs font-semibold text-slate-500 hover:text-slate-800 hover:underline flex items-center gap-1"
+              >
+                ← Convert a different image
+              </button>
+              <span id="resolutionInfo" class="text-xs font-medium text-slate-500">-</span>
+            </div>
+          </div>
+
+          <!-- COMPARISON & PREVIEWS -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- ORIGINAL IMAGE -->
+            <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs uppercase font-extrabold tracking-wider text-slate-400">Source Image</span>
+                  <span id="sourceBadge" class="text-xs font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700">PNG</span>
+                </div>
+                
+                <div class="w-full h-56 checkered-bg rounded-xl overflow-hidden flex items-center justify-center border border-slate-200/80 p-2">
+                  <img id="sourcePreview" src="" alt="Source Preview" class="max-h-full max-w-full object-contain rounded-lg">
+                </div>
+
+                <div class="mt-4 space-y-1 text-xs">
+                  <div class="flex justify-between text-slate-500">
+                    <span>File Name:</span>
+                    <span id="sourceName" class="font-medium text-slate-800 truncate max-w-[170px]">-</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>Original Size:</span>
+                    <span id="sourceSize" class="font-bold text-slate-800">-</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONVERTED IMAGE -->
+            <div class="bg-white rounded-2xl border-2 border-brand-500/50 p-4 shadow-md flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs uppercase font-extrabold tracking-wider text-brand-600">Converted Result</span>
+                  <span id="targetBadge" class="text-xs font-bold px-2 py-0.5 rounded bg-brand-50 text-brand-700 border border-brand-200">JPG</span>
+                </div>
+                
+                <div class="w-full h-56 checkered-bg rounded-xl overflow-hidden flex items-center justify-center border border-slate-200/80 p-2">
+                  <img id="convertedPreview" src="" alt="Converted Preview" class="max-h-full max-w-full object-contain rounded-lg">
+                </div>
+
+                <div class="mt-4 space-y-1 text-xs">
+                  <div class="flex justify-between text-slate-500">
+                    <span>New Format:</span>
+                    <span id="targetMimeLabel" class="font-medium text-slate-800">image/jpeg</span>
+                  </div>
+                  <div class="flex justify-between text-slate-500">
+                    <span>Generated Size:</span>
+                    <span id="convertedSize" class="font-bold text-emerald-600">-</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DOWNLOAD TRIGGER -->
+              <div class="mt-6 pt-4 border-t border-slate-100">
+                <a 
+                  id="downloadBtn" 
+                  href="#" 
+                  download="converted-image.jpg"
+                  class="w-full py-3.5 px-4 bg-brand-600 hover:bg-brand-700 active:bg-brand-800 text-white rounded-xl text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-brand-500/25 transition cursor-pointer"
                 >
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
-                  Add More Images
-                </button>
-                <button 
-                  onclick="clearAllImages()" 
-                  class="px-4 py-2 text-xs font-semibold text-rose-600 hover:bg-rose-50 rounded-xl transition"
-                >
-                  Clear All
-                </button>
+                  <span id="downloadBtnText">Download Converted Image</span>
+                </a>
               </div>
 
-              <div class="text-xs font-bold text-slate-500">
-                Total Pages: <span id="pageCount" class="text-brand-600 font-extrabold text-sm">0</span>
-              </div>
             </div>
-          </div>
 
-          <!-- THUMBNAIL PREVIEW GRID -->
-          <div>
-            <h3 class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-4">Image Sequence / Pages</h3>
-            <div id="thumbnailGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-              <!-- Dynamically rendered image cards go here -->
-            </div>
-          </div>
-
-          <!-- CONVERT & DOWNLOAD BUTTON -->
-          <div class="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-end gap-4">
-            <button 
-              id="convertBtn" 
-              onclick="compilePdfDocument()" 
-              class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 active:from-red-800 text-white rounded-xl text-base font-bold shadow-lg shadow-red-500/25 transition flex items-center justify-center gap-2"
-            >
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              Convert to PDF & Download
-            </button>
           </div>
 
         </div>
@@ -273,25 +328,25 @@
       <section id="seo-article" class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200/80 shadow-xs prose max-w-none text-slate-600">
         <div class="max-w-3xl">
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-4">
-            Merge Images into PDF Instantly with In-Browser Security
+            High-Performance Image Format Conversion: PNG, JPG, and WebP Explained
           </h2>
           
           <p class="text-sm sm:text-base leading-relaxed mb-4">
-            Converting image collections into standardized, readable PDF files is an everyday requirement for students, accountants, legal practitioners, and digital professionals. Whether compiling scanned bank receipts, photo IDs, portfolio samples, or handwritten class notes, organizing them into a unified PDF format ensures consistent presentation and universal compatibility across all devices. OmniTools delivers a rapid, clean, and reliable utility that compiles any collection of JPG, PNG, and modern WebP images into a single structured PDF document.
+            Digital imagery accounts for more than 60% of all data transferred across the modern internet. Choosing the correct raster format for your files can mean the difference between instantaneous page speeds and frustrating loading times. OmniTools' Universal Image Format Converter bridges the compatibility gap between traditional desktop publishing standards and modern web architectures—all while executing 100% locally inside your web browser.
           </p>
 
           <h3 class="text-lg sm:text-xl font-bold text-slate-800 mt-6 mb-3">
-            Customizable Layouts: Formats, Margins, and Auto-Orientation
+            PNG vs. JPG: Which Format Should You Choose?
           </h3>
           <p class="text-sm sm:text-base leading-relaxed mb-4">
-            Different documents demand different geometric layouts. Our client-side PDF engine allows granular control over paper sizing, offering standard European ISO A4 formats, American US Letter sizing, and dynamic "Fit-to-Image" scaling for artistic portfolios. Furthermore, you can choose between portrait layouts, landscape spreads, or smart auto-orientation that automatically detects each photo’s aspect ratio and adjusts each page dynamically. Choose zero-margin full-bleed rendering for borderless photography or clean margins for clean, formal office submissions.
+            PNG (Portable Network Graphics) is a lossless format renowned for its ability to retain crisp sharp lines and full 8-bit alpha transparency. It is the gold standard for software UI screenshots, vector icons, and transparent logos. However, because it avoids lossy compression, PNG photo files can be huge. In contrast, JPG (Joint Photographic Experts Group) utilizes discrete cosine transform (DCT) algorithms to compress continuous-tone photographs to a fraction of the size. When converting PNG to JPG, our engine automatically lays down a clean white canvas background to gracefully handle transparent regions without producing black visual artifacts.
           </p>
 
           <h3 class="text-lg sm:text-xl font-bold text-slate-800 mt-6 mb-3">
-            Why Client-Side PDF Generation is the Safest Option
+            Why Upgrade to WebP?
           </h3>
           <p class="text-sm sm:text-base leading-relaxed mb-4">
-            Most online image-to-PDF tools force you to upload your sensitive records—such as passports, driving licenses, property deeds, and confidential medical bills—to remote cloud servers. Even when sites claim files are deleted after an hour, your files risk being intercepted or cached in server logs. OmniTools eliminates this security risk entirely. Leveraging client-side JavaScript execution via the jsPDF engine, all image decoding, scaling, page creation, and binary encoding happen exclusively in your browser’s local memory. No data is transmitted across the internet, ensuring 100% confidentiality.
+            Developed by Google, WebP represents the modern standard for web optimization. WebP combines the best features of both formats: it supports full alpha-channel transparency like PNG while delivering 25% to 35% smaller file sizes than comparable high-quality JPEGs. If you are preparing visual assets for a website, converting PNG and JPG assets into WebP drastically enhances your Google Core Web Vitals and Largest Contentful Paint (LCP) benchmarks. If you ever need to open modern WebP files in older software like legacy Photoshop or print drivers, our converter instantly transforms WebP back into universal PNG or JPG files with zero hassle.
           </p>
         </div>
       </section>
@@ -327,11 +382,11 @@
       <!-- Processing Spinner Animation -->
       <div class="relative w-16 h-16 my-2">
         <div class="absolute inset-0 rounded-full border-4 border-slate-100"></div>
-        <div class="absolute inset-0 rounded-full border-4 border-red-600 border-t-transparent animate-spin"></div>
+        <div class="absolute inset-0 rounded-full border-4 border-brand-600 border-t-transparent animate-spin"></div>
       </div>
 
-      <h4 class="text-lg font-bold text-slate-900 mt-3">Compiling PDF Locally...</h4>
-      <p class="text-xs text-slate-500 mt-1 mb-4">Rendering pages in browser memory. Download will trigger shortly.</p>
+      <h4 class="text-lg font-bold text-slate-900 mt-3">Converting Image Format...</h4>
+      <p class="text-xs text-slate-500 mt-1 mb-4">Rendering pixels on canvas in your browser RAM.</p>
 
       <!-- Processing State Ad Placement -->
       <div class="w-full my-3">
@@ -367,23 +422,37 @@
     </div>
   </footer>
 
-  <!-- ================= CLIENT-SIDE LOGIC & JAVASCRIPT ================= -->
+  <!-- ================= CLIENT-SIDE CONVERSION JAVASCRIPT ================= -->
   <script>
-    // State list for uploaded images
-    let uploadedImages = []; // Stores { id, name, dataUrl, width, height }
+    // State variables
+    let rawFile = null;
+    let loadedImage = null; // HTMLImageElement
+    let originalBaseName = "converted-image";
 
     // DOM Elements
     const dropZone = document.getElementById('dropZone');
     const fileInput = document.getElementById('fileInput');
     const workspacePanel = document.getElementById('workspacePanel');
-    const thumbnailGrid = document.getElementById('thumbnailGrid');
-    const pageCount = document.getElementById('pageCount');
 
-    const pdfOrientation = document.getElementById('pdfOrientation');
-    const pdfFormat = document.getElementById('pdfFormat');
-    const pdfMargin = document.getElementById('pdfMargin');
+    const sourcePreview = document.getElementById('sourcePreview');
+    const sourceName = document.getElementById('sourceName');
+    const sourceSize = document.getElementById('sourceSize');
+    const sourceBadge = document.getElementById('sourceBadge');
+    const resolutionInfo = document.getElementById('resolutionInfo');
 
-    // Drag & Drop Listeners
+    const targetFormatSelect = document.getElementById('targetFormatSelect');
+    const qualitySlider = document.getElementById('qualitySlider');
+    const qualityVal = document.getElementById('qualityVal');
+    const qualityContainer = document.getElementById('qualityContainer');
+
+    const convertedPreview = document.getElementById('convertedPreview');
+    const convertedSize = document.getElementById('convertedSize');
+    const targetBadge = document.getElementById('targetBadge');
+    const targetMimeLabel = document.getElementById('targetMimeLabel');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const downloadBtnText = document.getElementById('downloadBtnText');
+
+    // Drag and Drop Event Listeners
     ['dragenter', 'dragover'].forEach(eventName => {
       dropZone.addEventListener(eventName, (e) => {
         e.preventDefault();
@@ -399,89 +468,63 @@
     });
 
     dropZone.addEventListener('drop', (e) => {
-      const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
-      if (files.length > 0) processFiles(files);
+      const files = e.dataTransfer.files;
+      if (files.length > 0 && files[0].type.startsWith('image/')) {
+        processSelectedImage(files[0]);
+      }
     });
 
     fileInput.addEventListener('change', (e) => {
-      const files = Array.from(e.target.files).filter(f => f.type.startsWith('image/'));
-      if (files.length > 0) processFiles(files);
-      fileInput.value = ''; // reset for subsequent triggers
+      if (e.target.files.length > 0) {
+        processSelectedImage(e.target.files[0]);
+      }
     });
 
-    // Process selected image files
-    function processFiles(files) {
-      let pendingLoads = files.length;
+    // STEP 1: Read the selected image using FileReader
+    function processSelectedImage(file) {
+      rawFile = file;
 
-      files.forEach(file => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const img = new Image();
-          img.onload = () => {
-            uploadedImages.push({
-              id: Date.now() + Math.random().toString(36).substring(2, 9),
-              name: file.name,
-              dataUrl: e.target.result,
-              width: img.naturalWidth,
-              height: img.naturalHeight
-            });
-            pendingLoads--;
-            if (pendingLoads === 0) {
-              renderThumbnails();
-            }
-          };
-          img.src = e.target.result;
+      // Extract filename without extension
+      const lastDotIndex = file.name.lastIndexOf('.');
+      originalBaseName = lastDotIndex !== -1 ? file.name.substring(0, lastDotIndex) : file.name;
+
+      const reader = new FileReader();
+
+      reader.onload = function(event) {
+        // STEP 2: Create Image object and wait for onload
+        loadedImage = new Image();
+        loadedImage.onload = function() {
+          // Update Source UI
+          sourcePreview.src = event.target.result;
+          sourceName.innerText = file.name;
+          sourceSize.innerText = formatBytes(file.size);
+          resolutionInfo.innerText = `Dimensions: ${loadedImage.naturalWidth} × ${loadedImage.naturalHeight} px`;
+
+          const srcExt = file.name.split('.').pop().toUpperCase() || 'IMG';
+          sourceBadge.innerText = srcExt;
+
+          // Intelligently set target format based on source
+          if (file.type === 'image/jpeg') {
+            targetFormatSelect.value = 'image/png';
+          } else if (file.type === 'image/png') {
+            targetFormatSelect.value = 'image/jpeg';
+          } else if (file.type === 'image/webp') {
+            targetFormatSelect.value = 'image/png';
+          }
+
+          // Show workspace panel
+          dropZone.classList.add('hidden');
+          workspacePanel.classList.remove('hidden');
+
+          // Trigger conversion with modal feedback
+          triggerConversionWithModal();
         };
-        reader.readAsDataURL(file);
-      });
-    }
 
-    // Render Thumbnail Grid
-    function renderThumbnails() {
-      if (uploadedImages.length === 0) {
-        workspacePanel.classList.add('hidden');
-        dropZone.classList.remove('hidden');
-        return;
-      }
+        // Load dataURL into the Image element
+        loadedImage.src = event.target.result;
+      };
 
-      dropZone.classList.add('hidden');
-      workspacePanel.classList.remove('hidden');
-      pageCount.innerText = uploadedImages.length;
-      thumbnailGrid.innerHTML = '';
-
-      uploadedImages.forEach((item, index) => {
-        const card = document.createElement('div');
-        card.className = "relative bg-slate-50 border border-slate-200 rounded-xl p-2.5 flex flex-col group hover:shadow-md transition";
-        card.innerHTML = `
-          <div class="relative w-full h-36 bg-slate-200/60 rounded-lg overflow-hidden flex items-center justify-center">
-            <img src="${item.dataUrl}" alt="${item.name}" class="max-h-full max-w-full object-contain">
-            <span class="absolute bottom-1.5 left-1.5 bg-slate-900/70 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">
-              Page ${index + 1}
-            </span>
-          </div>
-          <div class="mt-2 flex items-center justify-between text-xs">
-            <span class="truncate font-medium text-slate-700 max-w-[110px]" title="${item.name}">${item.name}</span>
-            <button onclick="removeImage('${item.id}')" class="text-rose-500 hover:text-rose-700 font-bold p-1 rounded hover:bg-rose-50 transition" title="Remove image">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
-            </button>
-          </div>
-        `;
-        thumbnailGrid.appendChild(card);
-      });
-    }
-
-    // Remove single image
-    function removeImage(id) {
-      uploadedImages = uploadedImages.filter(img => img.id !== id);
-      renderThumbnails();
-    }
-
-    // Clear all images
-    function clearAllImages() {
-      uploadedImages = [];
-      renderThumbnails();
+      reader.readAsDataURL(file);
     }
 
     // Modal Control Functions
@@ -505,104 +548,95 @@
       }
     }
 
-    // Compile PDF Document via jsPDF
-    function compilePdfDocument() {
-      if (uploadedImages.length === 0) return;
-
-      // Show processing modal with ad
+    function triggerConversionWithModal() {
       toggleModal(true);
-
-      // Timeout allows UI to show modal + ad before CPU-intensive execution
       setTimeout(() => {
-        const { jsPDF } = window.jspdf;
-        const orientationChoice = pdfOrientation.value;
-        const formatChoice = pdfFormat.value;
-        const marginChoice = pdfMargin.value;
+        convertImageFormat();
+        toggleModal(false);
+      }, 500);
+    }
 
-        // Margin in mm
-        let margin = 0;
-        if (marginChoice === 'small') margin = 10;
-        if (marginChoice === 'large') margin = 20;
+    // Update Quality Label
+    function updateQualityLabel() {
+      qualityVal.innerText = `${qualitySlider.value}%`;
+    }
 
-        let doc = null;
+    // STEP 3 & 4: Render onto Canvas, export via toDataURL(), and update Download Anchor
+    function convertImageFormat() {
+      if (!loadedImage) return;
 
-        uploadedImages.forEach((imgObj, index) => {
-          const isLandscape = imgObj.width > imgObj.height;
-          let pageOrientation = 'portrait';
+      const targetMime = targetFormatSelect.value;
+      const qualityFactor = parseInt(qualitySlider.value, 10) / 100;
 
-          if (orientationChoice === 'auto') {
-            pageOrientation = isLandscape ? 'landscape' : 'portrait';
-          } else {
-            pageOrientation = orientationChoice;
-          }
+      // PNG does not use lossy quality slider in toDataURL
+      if (targetMime === 'image/png') {
+        qualityContainer.classList.add('opacity-40', 'pointer-events-none');
+      } else {
+        qualityContainer.classList.remove('opacity-40', 'pointer-events-none');
+      }
 
-          // Initial creation or page append
-          if (index === 0) {
-            if (formatChoice === 'fit') {
-              // Convert px to mm roughly: 1 px ≈ 0.264583 mm
-              const pxToMm = 0.264583;
-              doc = new jsPDF({
-                orientation: pageOrientation,
-                unit: 'mm',
-                format: [imgObj.width * pxToMm, imgObj.height * pxToMm]
-              });
-            } else {
-              doc = new jsPDF({
-                orientation: pageOrientation,
-                unit: 'mm',
-                format: formatChoice
-              });
-            }
-          } else {
-            if (formatChoice === 'fit') {
-              const pxToMm = 0.264583;
-              doc.addPage([imgObj.width * pxToMm, imgObj.height * pxToMm], pageOrientation);
-            } else {
-              doc.addPage(formatChoice, pageOrientation);
-            }
-          }
+      // Create off-screen canvas with the image's intrinsic dimensions
+      const canvas = document.createElement('canvas');
+      canvas.width = loadedImage.naturalWidth;
+      canvas.height = loadedImage.naturalHeight;
+      const ctx = canvas.getContext('2d');
 
-          // Calculate drawing dimensions with aspect ratio preservation
-          const pageWidth = doc.internal.pageSize.getWidth();
-          const pageHeight = doc.internal.pageSize.getHeight();
+      // If converting to JPEG, transparent areas turn black unless filled with white background
+      if (targetMime === 'image/jpeg') {
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
 
-          const usableWidth = pageWidth - (margin * 2);
-          const usableHeight = pageHeight - (margin * 2);
+      // Draw loaded image onto canvas
+      ctx.drawImage(loadedImage, 0, 0);
 
-          const imgRatio = imgObj.width / imgObj.height;
-          const pageRatio = usableWidth / usableHeight;
+      // STEP 3: Generate the new file data using canvas.toDataURL()
+      const convertedDataUrl = canvas.toDataURL(targetMime, qualityFactor);
 
-          let renderWidth = usableWidth;
-          let renderHeight = usableHeight;
-          let posX = margin;
-          let posY = margin;
+      // Determine extension & friendly label
+      let ext = 'jpg';
+      let badgeLabel = 'JPG';
+      if (targetMime === 'image/png') {
+        ext = 'png';
+        badgeLabel = 'PNG';
+      } else if (targetMime === 'image/webp') {
+        ext = 'webp';
+        badgeLabel = 'WEBP';
+      }
 
-          if (formatChoice !== 'fit') {
-            if (imgRatio > pageRatio) {
-              renderWidth = usableWidth;
-              renderHeight = usableWidth / imgRatio;
-              posY = margin + (usableHeight - renderHeight) / 2;
-            } else {
-              renderHeight = usableHeight;
-              renderWidth = usableHeight * imgRatio;
-              posX = margin + (usableWidth - renderWidth) / 2;
-            }
-          }
+      // Estimate byte size from DataURL Base64 string
+      const stringLength = convertedDataUrl.length - `data:${targetMime};base64,`.length;
+      const estimatedBytes = Math.round(stringLength * 0.75);
 
-          // Determine image format for jsPDF
-          const imageType = imgObj.dataUrl.includes('image/png') ? 'PNG' : 'JPEG';
-          doc.addImage(imgObj.dataUrl, imageType, posX, posY, renderWidth, renderHeight, undefined, 'FAST');
-        });
+      // Update Converted UI elements
+      convertedPreview.src = convertedDataUrl;
+      targetBadge.innerText = badgeLabel;
+      targetMimeLabel.innerText = targetMime;
+      convertedSize.innerText = formatBytes(estimatedBytes);
 
-        // Save generated PDF
-        doc.save('converted-images.pdf');
+      // STEP 4: Set download link & file extension
+      const outputFilename = `${originalBaseName}.${ext}`;
+      downloadBtn.href = convertedDataUrl;
+      downloadBtn.download = outputFilename;
+      downloadBtnText.innerText = `Download ${outputFilename}`;
+    }
 
-        // Dismiss modal after short delay
-        setTimeout(() => {
-          toggleModal(false);
-        }, 600);
+    // Reset Tool to initial upload state
+    function resetConverter() {
+      rawFile = null;
+      loadedImage = null;
+      fileInput.value = '';
+      workspacePanel.classList.add('hidden');
+      dropZone.classList.remove('hidden');
+    }
 
-      }, 800);
+    // Helper: Format bytes to human-readable size
+    function formatBytes(bytes) {
+      if (!bytes || bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return (bytes / Math.pow(k, i)).toFixed(2) + ' ' + sizes[i];
     }
   </script>
 </body>
