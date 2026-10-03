@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>OmniTools — 100% Free, Secure & In-Browser Utility Tools</title>
+  <meta name="title" content="OmniTools — 100% Free, Secure & In-Browser Utility Tools">
+  <meta name="description" content="Lightning-fast online conversion and utility tools. Convert images to PDF, compress photos, create ZIP files, generate secure passwords, and count words directly in your browser with zero server uploads.">
+  <meta name="keywords" content="image to pdf, png to jpg, webp to png, zip maker, image compressor, password generator, word counter, client side tools, free online converter">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/">
+  <meta property="og:title" content="OmniTools — Fast, Secure & Free Utility Tools">
+  <meta property="og:description" content="Convert, compress, and create right in your browser. Complete privacy with 100% client-side file processing.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=630&q=80">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://example.com/">
+  <meta property="twitter:title" content="OmniTools — Fast, Secure & Free Utility Tools">
+  <meta property="twitter:description" content="Convert, compress, and create right in your browser. Complete privacy with 100% client-side file processing.">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    .ad-pattern {
+      background-color: #f8fafc;
+      background-image: radial-gradient(#cbd5e1 0.75px, transparent 0.75px);
+      background-size: 10px 10px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white flex flex-col min-h-screen">
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Brand Logo -->
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Omni<span class="text-brand-600">Tools</span></span>
+            <span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400 -mt-1">Client-Side Engine</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+          <a href="#tools-section" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">Tools Directory</a>
+          <a href="#privacy-promise" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">Security & Privacy</a>
+          <a href="#about-section" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">About Engine</a>
+        </nav>
+
+        <!-- CTA & Quick Test Button -->
+        <div class="flex items-center gap-3">
+          <button onclick="toggleModal(true)" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider px-3.5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Engine Demo
+          </button>
+          <a href="#tools-section" class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 active:bg-brand-800 rounded-xl shadow-sm hover:shadow-md transition">
+            Explore All Tools
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= TOP LEADERBOARD AD (BELOW HEADER) ================= -->
+  <div class="w-full bg-slate-100 border-b border-slate-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 flex justify-center">
+      <div class="ad-pattern border border-dashed border-slate-300 rounded-lg w-full max-w-[728px] h-[90px] flex flex-col items-center justify-center text-slate-400">
+        <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+        <span class="text-[11px] text-slate-400">Leaderboard Ad Slot (728x90 / Responsive)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN LAYOUT WITH SIDEBAR ADS ================= -->
+  <div class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex justify-center gap-6 my-6">
+
+    <!-- DESKTOP LEFT SKYSCRAPER AD -->
+    <aside class="hidden xl:block w-[160px] flex-shrink-0">
+      <div class="sticky top-28">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-xl w-[160px] h-[600px] flex flex-col items-center justify-center text-center p-3 text-slate-400 shadow-sm">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <span class="text-[11px] mt-1">Wide Skyscraper (160x600)</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER PRIMARY CONTENT -->
+    <main class="w-full max-w-5xl flex-grow space-y-16">
+
+      <!-- HERO SECTION -->
+      <section class="text-center pt-8 pb-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-brand-700 text-xs font-semibold mb-6">
+          <svg class="w-4 h-4 text-brand-600" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd" />
+          </svg>
+          100% Client-Side Privacy — Files Never Leave Your Browser
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+          Your Everyday Digital Tools.<br class="hidden sm:inline" />
+          <span class="bg-gradient-to-r from-brand-600 to-indigo-600 bg-clip-text text-transparent">Free, Private & Instant.</span>
+        </h1>
+
+        <p class="mt-5 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
+          Convert formats, compress high-res photos, build archives, and generate cryptographic passwords directly in your web browser. No upload limits, no servers, zero wait time.
+        </p>
+
+        <!-- Search Bar Placeholder -->
+        <div class="mt-8 max-w-xl mx-auto">
+          <div class="relative flex items-center">
+            <input 
+              type="text" 
+              id="toolSearchInput" 
+              placeholder="Search tools (e.g. PDF, WebP, ZIP, Password)..."
+              class="w-full pl-12 pr-4 py-3.5 rounded-2xl border border-slate-300 bg-white text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-brand-500/10 focus:border-brand-600 shadow-sm transition"
+              oninput="filterTools()"
+            >
+            <svg class="w-5 h-5 text-slate-400 absolute left-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Trust Features Minimal Strip -->
+        <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto text-left">
+          <div class="p-3 bg-white rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3">
+            <span class="text-emerald-500 bg-emerald-50 p-2 rounded-lg">⚡</span>
+            <div>
+              <p class="text-xs font-bold text-slate-900">Zero Uploads</p>
+              <p class="text-[11px] text-slate-500">Processed locally</p>
+            </div>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3">
+            <span class="text-brand-500 bg-brand-50 p-2 rounded-lg">🛡️</span>
+            <div>
+              <p class="text-xs font-bold text-slate-900">Military Security</p>
+              <p class="text-[11px] text-slate-500">No data stored</p>
+            </div>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3">
+            <span class="text-amber-500 bg-amber-50 p-2 rounded-lg">🚀</span>
+            <div>
+              <p class="text-xs font-bold text-slate-900">Unlimited Size</p>
+              <p class="text-[11px] text-slate-500">Fast memory execution</p>
+            </div>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3">
+            <span class="text-purple-500 bg-purple-50 p-2 rounded-lg">💎</span>
+            <div>
+              <p class="text-xs font-bold text-slate-900">100% Free</p>
+              <p class="text-[11px] text-slate-500">No subscriptions</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TOOLS GRID SECTION ================= -->
+      <section id="tools-section" class="scroll-mt-24">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4 border-b border-slate-200 pb-4">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Essential Browser Utilities</h2>
+            <p class="text-sm text-slate-500 mt-1">Select an in-browser client-side tool to get started immediately</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold text-slate-500">Filter:</span>
+            <span class="text-xs bg-brand-100 text-brand-800 font-bold px-2.5 py-1 rounded-md">All Tools</span>
+          </div>
+        </div>
+
+        <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- TOOL 1: Image to PDF Converter -->
+          <article class="tool-card group bg-white rounded-2xl border border-slate-200 hover:border-brand-500/50 p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-red-100 text-red-800">PDF Tool</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-2 group-hover:text-brand-600 transition-colors">Image to PDF Converter</h3>
+              <p class="text-sm text-slate-600 mt-2 line-clamp-2">Merge JPG, PNG, and WebP images into a single, clean PDF document with instant client rendering.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-400">Pure JavaScript</span>
+              <a href="image-to-pdf.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 group-hover:translate-x-1 transition-transform">
+                Launch Tool <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- TOOL 2: ZIP Maker & Folder to ZIP -->
+          <article class="tool-card group bg-white rounded-2xl border border-slate-200 hover:border-brand-500/50 p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-amber-100 text-amber-800">Archive Tool</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-2 group-hover:text-brand-600 transition-colors">ZIP Maker & Folder to ZIP</h3>
+              <p class="text-sm text-slate-600 mt-2 line-clamp-2">Bundle multiple files or entire folder trees into compressed .zip files without uploading a single byte.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-400">JSZip Powered</span>
+              <a href="zip-maker.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 group-hover:translate-x-1 transition-transform">
+                Launch Tool <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- TOOL 3: Image Compressor -->
+          <article class="tool-card group bg-white rounded-2xl border border-slate-200 hover:border-brand-500/50 p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Optimization</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-2 group-hover:text-brand-600 transition-colors">Smart Image Compressor</h3>
+              <p class="text-sm text-slate-600 mt-2 line-clamp-2">Drastically shrink JPG, PNG, and WebP dimensions and weight while preserving maximum visual clarity.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-400">Canvas API</span>
+              <a href="image-compressor.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 group-hover:translate-x-1 transition-transform">
+                Launch Tool <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- TOOL 4: PNG to JPG Converter -->
+          <article class="tool-card group bg-white rounded-2xl border border-slate-200 hover:border-brand-500/50 p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-blue-100 text-blue-800">Format Converter</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-2 group-hover:text-brand-600 transition-colors">PNG to JPG Converter</h3>
+              <p class="text-sm text-slate-600 mt-2 line-clamp-2">Convert heavy transparent PNGs to lightweight JPG formats with customizable white canvas backgrounds.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-400">Instant Canvas</span>
+              <a href="png-to-jpg.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 group-hover:translate-x-1 transition-transform">
+                Launch Tool <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- TOOL 5: JPG to PNG Converter -->
+          <article class="tool-card group bg-white rounded-2xl border border-slate-200 hover:border-brand-500/50 p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-indigo-100 text-indigo-800">Format Converter</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-2 group-hover:text-brand-600 transition-colors">JPG to PNG Converter</h3>
+              <p class="text-sm text-slate-600 mt-2 line-clamp-2">Transform compressed JPG photos into uncompressed PNG graphics for high fidelity edits.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-400">Lossless Output</span>
+              <a href="jpg-to-png.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 group-hover:translate-x-1 transition-transform">
+                Launch Tool <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- TOOL 6: PNG to WebP Converter -->
+          <article class="tool-card group bg-white rounded-2xl border border-slate-200 hover:border-brand-500/50 p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-sky-100 text-sky-800">Modern Web</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-2 group-hover:text-brand-600 transition-colors">PNG to WebP Converter</h3>
+              <p class="text-sm text-slate-600 mt-2 line-clamp-2">Speed up your website by converting heavy PNG graphics into lightweight, alpha-channel supported WebP images.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-400">Next-Gen Format</span>
+              <a href="png-to-webp.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 group-hover:translate-x-1 transition-transform">
+                Launch Tool <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- TOOL 7: WebP to PNG Converter -->
+          <article class="tool-card group bg-white rounded-2xl border border-slate-200 hover:border-brand-500/50 p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-teal-100 text-teal-800">Compatibility</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-2 group-hover:text-brand-600 transition-colors">WebP to PNG Converter</h3>
+              <p class="text-sm text-slate-600 mt-2 line-clamp-2">Convert downloaded modern WebP graphics back into standard PNG for legacy graphics software and editors.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-400">Universal Format</span>
+              <a href="webp-to-png.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 group-hover:translate-x-1 transition-transform">
+                Launch Tool <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- TOOL 8: Word & Character Counter -->
+          <article class="tool-card group bg-white rounded-2xl border border-slate-200 hover:border-brand-500/50 p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-violet-100 text-violet-800">Content Tool</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-2 group-hover:text-brand-600 transition-colors">Word & Character Counter</h3>
+              <p class="text-sm text-slate-600 mt-2 line-clamp-2">Analyze text length, reading time, sentences, and character densities in real-time as you type.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-400">Live Statistics</span>
+              <a href="word-counter.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 group-hover:translate-x-1 transition-transform">
+                Launch Tool <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- TOOL 9: Strong Password Generator -->
+          <article class="tool-card group bg-white rounded-2xl border border-slate-200 hover:border-brand-500/50 p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-cyan-100 text-cyan-800">Security</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-2 group-hover:text-brand-600 transition-colors">Strong Password Generator</h3>
+              <p class="text-sm text-slate-600 mt-2 line-clamp-2">Create ultra-secure, cryptographically random keys and passwords using the native Web Crypto API.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-400">Crypto API</span>
+              <a href="password-generator.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 group-hover:translate-x-1 transition-transform">
+                Launch Tool <span>→</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ================= IN-ARTICLE AD PLACEHOLDER ================= -->
+      <section class="w-full my-8">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-2xl p-6 flex flex-col items-center justify-center text-center text-slate-400 min-h-[250px]">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <p class="text-xs text-slate-500 mt-1">Responsive Native / In-Feed In-Article Ad Unit</p>
+          <div class="mt-2 text-[11px] text-slate-400">(300x250, 336x280, or Fluid)</div>
+        </div>
+      </section>
+
+      <!-- ================= PRIVACY & HOW IT WORKS ================= -->
+      <section id="privacy-promise" class="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-xl">
+        <div class="relative z-10 max-w-3xl">
+          <span class="text-xs uppercase tracking-wider text-brand-400 font-bold">Uncompromising Security</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight mt-2">Why In-Browser Processing is Superior</h2>
+          <p class="mt-4 text-slate-300 leading-relaxed text-sm sm:text-base">
+            Traditional online converters upload your confidential PDFs, invoices, and family photos to third-party web servers where they can be cached, leaked, or inspected.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-6 mt-8">
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 mt-0.5 font-bold text-xs">✓</div>
+              <p class="text-sm text-slate-300"><strong class="text-white block font-semibold">100% Privacy Guaranteed:</strong> Binary files never leave your computer's RAM.</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 mt-0.5 font-bold text-xs">✓</div>
+              <p class="text-sm text-slate-300"><strong class="text-white block font-semibold">Zero Bandwidth Delay:</strong> Avoid gigabyte upload and download waits; speed matches your machine's hardware.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 300+ WORDS SEO OPTIMIZED CONTENT ================= -->
+      <section id="about-section" class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200/80 shadow-xs prose max-w-none text-slate-600">
+        <div class="max-w-3xl">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-4">
+            Next-Generation Client-Side Utility Platform for Creators and Professionals
+          </h2>
+          
+          <p class="text-sm sm:text-base leading-relaxed mb-4">
+            Welcome to OmniTools, the premier destination for secure, browser-based digital file operations. In an era where online privacy is paramount, conventional web utilities continue to rely on insecure architectures that require users to upload sensitive photographs, confidential documents, and proprietary materials across remote networks. OmniTools completely re-engineers this paradigm by shifting entire computational workloads into user-side execution environments using modern ECMAScript standards, HTML5 Canvas, and WebAssembly APIs.
+          </p>
+
+          <h3 class="text-lg sm:text-xl font-bold text-slate-800 mt-6 mb-3">
+            High Performance Image Format Conversions & Optimization
+          </h3>
+          <p class="text-sm sm:text-base leading-relaxed mb-4">
+            Whether you need to convert high-resolution PNG images to space-saving JPG files, prepare high-definition photography for legacy print software, or leverage modern Google WebP compression for superior Google Core Web Vitals optimization, our tools execute each conversion instantly. By using low-level raster graphics rendering directly on your GPU through client-side HTML5 canvas pipelines, you can compress, adjust quality parameters, and convert image files without losing structural metadata and without sending an ounce of data to a server.
+          </p>
+
+          <h3 class="text-lg sm:text-xl font-bold text-slate-800 mt-6 mb-3">
+            In-Browser Document Packaging, Archival, and Cryptography
+          </h3>
+          <p class="text-sm sm:text-base leading-relaxed mb-4">
+            Our multi-tool platform provides deep versatility for day-to-day productivity. Create instant PDF portfolios from stacks of scanned images, build structured ZIP directories from local folders without installing bloated desktop software, and analyze text character density with precision word counters. When safeguarding your accounts, generate cryptographically safe passwords using the Web Crypto subsystem—protecting your passwords from transit interception. Enjoy fast, reliable, zero-latency utilities designed to make web workflows seamless.
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- DESKTOP RIGHT SKYSCRAPER AD -->
+    <aside class="hidden xl:block w-[160px] flex-shrink-0">
+      <div class="sticky top-28">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-xl w-[160px] h-[600px] flex flex-col items-center justify-center text-center p-3 text-slate-400 shadow-sm">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <span class="text-[11px] mt-1">Wide Skyscraper (160x600)</span>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ================= BOTTOM LEADERBOARD AD (ABOVE FOOTER) ================= -->
+  <div class="w-full bg-slate-100 border-t border-slate-200 py-4 mt-12">
+    <div class="max-w-7xl mx-auto px-4 flex justify-center">
+      <div class="ad-pattern border border-dashed border-slate-300 rounded-lg w-full max-w-[728px] h-[90px] flex flex-col items-center justify-center text-slate-400">
+        <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+        <span class="text-[11px] text-slate-400">Leaderboard / Large Mobile Banner (728x90)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PROCESSING MODAL WITH INTEGRATED AD (TEMPLATE) ================= -->
+  <div id="processingModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-white rounded-3xl max-w-md w-full mx-4 p-6 shadow-2xl border border-slate-100 flex flex-col items-center text-center transform scale-95 transition-transform duration-300" id="modalCard">
+      
+      <!-- Processing Spinner Animation -->
+      <div class="relative w-16 h-16 my-2">
+        <div class="absolute inset-0 rounded-full border-4 border-slate-100"></div>
+        <div class="absolute inset-0 rounded-full border-4 border-brand-600 border-t-transparent animate-spin"></div>
+      </div>
+
+      <h4 class="text-lg font-bold text-slate-900 mt-3" id="modalTitle">Processing Files Locally...</h4>
+      <p class="text-xs text-slate-500 mt-1 mb-4">Rendering directly in your browser. Almost done!</p>
+
+      <!-- Processing State Ad Placement -->
+      <div class="w-full my-3">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-xl w-full h-[250px] flex flex-col items-center justify-center text-slate-400 p-2">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <span class="text-[11px] text-slate-400">Medium Rectangle Ad (300x250)</span>
+        </div>
+      </div>
+
+      <button onclick="toggleModal(false)" class="mt-2 text-xs font-semibold text-slate-400 hover:text-slate-600 underline">
+        Dismiss Preview
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-white border-t border-slate-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Logo & Copyright Notice -->
+        <div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-sm">O</div>
+            <span class="font-extrabold text-slate-900">OmniTools</span>
+          </div>
+          <span class="hidden sm:inline text-slate-300">|</span>
+          <p class="text-xs text-slate-500">© 2025 OmniTools Inc. All files remain strictly on client machine.</p>
+        </div>
+
+        <!-- STRICT FOOTER ATTRIBUTION -->
+        <div class="text-sm font-semibold text-slate-700 bg-slate-50 px-4 py-2 rounded-xl border border-slate-200">
+          Developed by <a href="https://www.facebook.com/m.rakibmazhar/" target="_blank" rel="noopener noreferrer" class="text-brand-600 hover:text-brand-700 hover:underline">MI Rakib</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= CLIENT-SIDE LOGIC & INTERACTIONS ================= -->
+  <script>
+    // Live Search Filter for Tool Cards
+    function filterTools() {
+      const query = document.getElementById('toolSearchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.tool-card');
+      
+      cards.forEach(card => {
+        const title = card.querySelector('h3').innerText.toLowerCase();
+        const desc = card.querySelector('p').innerText.toLowerCase();
+        if (title.includes(query) || desc.includes(query)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Modal Display Trigger (Demonstration & Tool Integration Helper)
+    function toggleModal(show) {
+      const modal = document.getElementById('processingModal');
+      const card = document.getElementById('modalCard');
+      if (show) {
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+          modal.classList.remove('opacity-0');
+          card.classList.remove('scale-95');
+          card.classList.add('scale-100');
+        }, 10);
+      } else {
+        modal.classList.add('opacity-0');
+        card.classList.remove('scale-100');
+        card.classList.add('scale-95');
+        setTimeout(() => {
+          modal.classList.add('hidden');
+        }, 300);
+      }
+    }
+  </script>
+</body>
+</html>
