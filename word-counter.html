@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>Live Word & Character Counter — Free Online Text Analyzer</title>
+  <meta name="title" content="Live Word & Character Counter — Free Online Text Analyzer">
+  <meta name="description" content="Calculate word counts, character counts (with and without spaces), sentences, paragraphs, and reading time in real-time. 100% private in-browser text analysis.">
+  <meta name="keywords" content="word counter, character counter, character count without spaces, sentence counter, reading time calculator, paragraph counter, live text analyzer">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/word-counter.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/word-counter.html">
+  <meta property="og:title" content="Live Word & Character Counter — Fast, Accurate & Private">
+  <meta property="og:description" content="Instant real-time word, character, and sentence counting right in your browser. No data leaves your machine.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=630&q=80">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    .ad-pattern {
+      background-color: #f8fafc;
+      background-image: radial-gradient(#cbd5e1 0.75px, transparent 0.75px);
+      background-size: 10px 10px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white flex flex-col min-h-screen">
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Brand Logo -->
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Omni<span class="text-brand-600">Tools</span></span>
+            <span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400 -mt-1">Client-Side Engine</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+          <a href="index.html#tools-section" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">Tools Directory</a>
+          <a href="#how-it-works" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">Character Limits</a>
+          <a href="#seo-article" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">Text Analysis Guide</a>
+        </nav>
+
+        <!-- CTA Back to All Tools -->
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 active:bg-slate-300 rounded-xl transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            All Tools
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= TOP LEADERBOARD AD (BELOW HEADER) ================= -->
+  <div class="w-full bg-slate-100 border-b border-slate-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 flex justify-center">
+      <div class="ad-pattern border border-dashed border-slate-300 rounded-lg w-full max-w-[728px] h-[90px] flex flex-col items-center justify-center text-slate-400">
+        <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+        <span class="text-[11px] text-slate-400">Leaderboard Ad Slot (728x90 / Responsive)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN LAYOUT WITH SIDEBAR ADS ================= -->
+  <div class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex justify-center gap-6 my-6">
+
+    <!-- DESKTOP LEFT SKYSCRAPER AD -->
+    <aside class="hidden xl:block w-[160px] flex-shrink-0">
+      <div class="sticky top-28">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-xl w-[160px] h-[600px] flex flex-col items-center justify-center text-center p-3 text-slate-400 shadow-sm">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <span class="text-[11px] mt-1">Wide Skyscraper (160x600)</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER PRIMARY CONTENT -->
+    <main class="w-full max-w-4xl flex-grow space-y-10">
+
+      <!-- TOOL HEADER -->
+      <section class="text-center pt-4">
+        <!-- Breadcrumb -->
+        <nav class="flex justify-center items-center gap-2 text-xs font-semibold text-slate-400 mb-3">
+          <a href="index.html" class="hover:text-brand-600 transition">Home</a>
+          <span>/</span>
+          <span class="text-slate-700">Word & Character Counter</span>
+        </nav>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+          Word & Character Counter
+        </h1>
+        <p class="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal">
+          Accurate real-time text analysis. Monitor words, characters, sentences, paragraphs, and reading duration instantly as you type.
+        </p>
+      </section>
+
+      <!-- ================= STATS OVERVIEW CARDS ================= -->
+      <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+        
+        <!-- Stat 1: Words -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Words</span>
+          <p id="statWords" class="text-2xl sm:text-3xl font-extrabold text-brand-600 mt-2">0</p>
+        </div>
+
+        <!-- Stat 2: Characters (with spaces) -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Characters</span>
+          <p id="statCharsWithSpaces" class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">0</p>
+        </div>
+
+        <!-- Stat 3: Characters (no spaces) -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">No Spaces</span>
+          <p id="statCharsNoSpaces" class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">0</p>
+        </div>
+
+        <!-- Stat 4: Sentences -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Sentences</span>
+          <p id="statSentences" class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">0</p>
+        </div>
+
+        <!-- Stat 5: Paragraphs -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Paragraphs</span>
+          <p id="statParagraphs" class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">0</p>
+        </div>
+
+        <!-- Stat 6: Reading Time -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Reading Time</span>
+          <p id="statReadingTime" class="text-2xl sm:text-3xl font-extrabold text-emerald-600 mt-2">0m</p>
+        </div>
+
+      </section>
+
+      <!-- ================= INTERACTIVE WORKSPACE ================= -->
+      <section class="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden p-6 sm:p-8 space-y-4">
+        
+        <!-- QUICK ACTION UTILITY BUTTONS -->
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider mr-1">Transform:</span>
+            <button 
+              type="button" 
+              onclick="transformText('upper')" 
+              class="px-2.5 py-1 text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg transition"
+            >
+              UPPERCASE
+            </button>
+            <button 
+              type="button" 
+              onclick="transformText('lower')" 
+              class="px-2.5 py-1 text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg transition"
+            >
+              lowercase
+            </button>
+            <button 
+              type="button" 
+              onclick="transformText('title')" 
+              class="px-2.5 py-1 text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg transition"
+            >
+              Title Case
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button 
+              type="button" 
+              onclick="copyToClipboard()" 
+              id="copyBtn"
+              class="px-3 py-1.5 text-xs font-semibold bg-brand-50 hover:bg-brand-100 text-brand-700 border border-brand-200 rounded-lg transition flex items-center gap-1.5"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              Copy Text
+            </button>
+            <button 
+              type="button" 
+              onclick="clearInputText()" 
+              class="px-3 py-1.5 text-xs font-semibold text-rose-600 hover:bg-rose-50 rounded-lg transition"
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <!-- MAIN TEXTAREA -->
+        <div class="relative">
+          <textarea 
+            id="textInput" 
+            rows="12" 
+            placeholder="Type or paste your text here to begin instant real-time analysis..."
+            class="w-full p-4 sm:p-5 text-slate-800 bg-slate-50/50 hover:bg-slate-50 focus:bg-white rounded-2xl border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 focus:outline-none transition leading-relaxed text-sm sm:text-base resize-y font-normal"
+            oninput="analyzeText()"
+            autofocus
+          ></textarea>
+        </div>
+
+        <!-- EXTRA INSIGHTS STRIP -->
+        <div class="flex flex-wrap items-center justify-between text-xs text-slate-500 pt-2 px-1">
+          <div class="flex items-center gap-4">
+            <span>Speaking Time: <strong id="statSpeakingTime" class="text-slate-800 font-bold">0m</strong></span>
+            <span>Avg. Word Length: <strong id="statAvgWordLength" class="text-slate-800 font-bold">0</strong> chars</span>
+          </div>
+          <span class="text-slate-400">100% Client-Side Processing</span>
+        </div>
+
+      </section>
+
+      <!-- ================= SOCIAL & SEO LIMITS REFERENCE ================= -->
+      <section id="how-it-works" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs">
+        <h3 class="text-base font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <span>📏</span> Common Character & Length Limits Quick Reference
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <p class="font-bold text-slate-800">Twitter / X Post</p>
+            <p class="text-slate-500 mt-1">Max: <strong>280</strong> characters</p>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <p class="font-bold text-slate-800">Google Meta Title</p>
+            <p class="text-slate-500 mt-1">Recommended: <strong>50 - 60</strong> chars</p>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <p class="font-bold text-slate-800">Google Meta Description</p>
+            <p class="text-slate-500 mt-1">Recommended: <strong>150 - 160</strong> chars</p>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <p class="font-bold text-slate-800">LinkedIn Post</p>
+            <p class="text-slate-500 mt-1">Max: <strong>3,000</strong> characters</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= IN-ARTICLE AD PLACEHOLDER ================= -->
+      <section class="w-full my-8">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-2xl p-6 flex flex-col items-center justify-center text-center text-slate-400 min-h-[250px]">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <p class="text-xs text-slate-500 mt-1">Responsive Native / In-Feed In-Article Ad Unit</p>
+          <div class="mt-2 text-[11px] text-slate-400">(300x250, 336x280, or Fluid)</div>
+        </div>
+      </section>
+
+      <!-- ================= 300+ WORDS SEO OPTIMIZED CONTENT ================= -->
+      <section id="seo-article" class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200/80 shadow-xs prose max-w-none text-slate-600">
+        <div class="max-w-3xl">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-4">
+            Why Accurate Word and Character Counting Matters for Digital Creators
+          </h2>
+          
+          <p class="text-sm sm:text-base leading-relaxed mb-4">
+            In modern publishing, academic research, search engine optimization (SEO), and copywriting, word counts and character density dictate structure and visibility. Whether you are crafting an essay with strict thesis limits, drafting a high-converting Google Ads headline, or ensuring an article satisfies comprehensive topical depth requirements, having an instant, precise text counter is indispensable. OmniTools' Word & Character Counter provides real-time lexical analytics with zero lag and absolute data privacy.
+          </p>
+
+          <h3 class="text-lg sm:text-xl font-bold text-slate-800 mt-6 mb-3">
+            Mastering Social Media and Search Engine Character Limits
+          </h3>
+          <p class="text-sm sm:text-base leading-relaxed mb-4">
+            Digital platforms enforce rigid character constraints that determine whether your message is displayed or truncated. Search engines like Google truncate organic title tags beyond 60 characters and meta descriptions beyond 160 characters. Similarly, Twitter/X caps standard tweets at 280 characters, while SMS marketing requires brevity within 160 characters. By monitoring characters with and without whitespace in real-time, copywriters can optimize every syllable for maximum punch without exceeding platform parameters.
+          </p>
+
+          <h3 class="text-lg sm:text-xl font-bold text-slate-800 mt-6 mb-3">
+            Estimating Reading Time & Speech Duration for Better Engagement
+          </h3>
+          <p class="text-sm sm:text-base leading-relaxed mb-4">
+            Audience attention is scarce. Adding estimated reading times to articles and blog posts improves user retention and sets clear expectations. Our tool calculates estimated reading time using the scientifically supported standard benchmark of 200 to 225 words per minute (WPM) for silent comprehension, as well as 130 words per minute for verbal speech delivery. Whether preparing a podcast script, conference presentation, or university lecture, you can gauge your delivery timing before stepping in front of the microphone.
+          </p>
+
+          <h3 class="text-lg sm:text-xl font-bold text-slate-800 mt-6 mb-3">
+            Complete Data Security: Never Sent to Remote Servers
+          </h3>
+          <p class="text-sm sm:text-base leading-relaxed mb-4">
+            Many traditional online word counters upload your drafts, unpublished trade secrets, or private correspondence to cloud servers to run calculations. OmniTools is fundamentally different: every regex parser, sentence delimiter, and paragraph analyzer operates exclusively in your browser’s JavaScript runtime. Your content is never transmitted across the network, stored in cookies, or saved in server logs. You retain complete sovereignty over your intellectual property at all times.
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- DESKTOP RIGHT SKYSCRAPER AD -->
+    <aside class="hidden xl:block w-[160px] flex-shrink-0">
+      <div class="sticky top-28">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-xl w-[160px] h-[600px] flex flex-col items-center justify-center text-center p-3 text-slate-400 shadow-sm">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <span class="text-[11px] mt-1">Wide Skyscraper (160x600)</span>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ================= BOTTOM LEADERBOARD AD (ABOVE FOOTER) ================= -->
+  <div class="w-full bg-slate-100 border-t border-slate-200 py-4 mt-12">
+    <div class="max-w-7xl mx-auto px-4 flex justify-center">
+      <div class="ad-pattern border border-dashed border-slate-300 rounded-lg w-full max-w-[728px] h-[90px] flex flex-col items-center justify-center text-slate-400">
+        <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+        <span class="text-[11px] text-slate-400">Leaderboard / Large Mobile Banner (728x90)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-white border-t border-slate-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Logo & Copyright Notice -->
+        <div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-sm">O</div>
+            <span class="font-extrabold text-slate-900">OmniTools</span>
+          </div>
+          <span class="hidden sm:inline text-slate-300">|</span>
+          <p class="text-xs text-slate-500">© 2025 OmniTools Inc. All files remain strictly on client machine.</p>
+        </div>
+
+        <!-- STRICT MANDATORY FOOTER ATTRIBUTION -->
+        <div class="text-sm font-semibold text-slate-700 bg-slate-50 px-4 py-2 rounded-xl border border-slate-200">
+          Developed by <a href="https://www.facebook.com/m.rakibmazhar/" target="_blank" rel="noopener noreferrer" class="text-brand-600 hover:text-brand-700 hover:underline">MI Rakib</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= CLIENT-SIDE REAL-TIME JAVASCRIPT ================= -->
+  <script>
+    // DOM Elements
+    const textInput = document.getElementById('textInput');
+    const statWords = document.getElementById('statWords');
+    const statCharsWithSpaces = document.getElementById('statCharsWithSpaces');
+    const statCharsNoSpaces = document.getElementById('statCharsNoSpaces');
+    const statSentences = document.getElementById('statSentences');
+    const statParagraphs = document.getElementById('statParagraphs');
+    const statReadingTime = document.getElementById('statReadingTime');
+    const statSpeakingTime = document.getElementById('statSpeakingTime');
+    const statAvgWordLength = document.getElementById('statAvgWordLength');
+    const copyBtn = document.getElementById('copyBtn');
+
+    // Real-Time Analysis Engine
+    function analyzeText() {
+      const text = textInput.value;
+
+      // 1. Character count (with spaces)
+      const charsWithSpaces = text.length;
+
+      // 2. Character count (no spaces)
+      const charsNoSpaces = text.replace(/\s/g, '').length;
+
+      // 3. Word count (handles multiple spaces, line breaks, tabs)
+      const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+      const wordCount = text.trim().length === 0 ? 0 : words.length;
+
+      // 4. Sentence count (splits by ., !, ?, considering common endings)
+      const sentences = text.trim().split(/[.!?]+(?:\s+|$)/).filter(s => s.trim().length > 0);
+      const sentenceCount = text.trim().length === 0 ? 0 : sentences.length;
+
+      // 5. Paragraph count (splits by one or more newlines)
+      const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
+      const paragraphCount = text.trim().length === 0 ? 0 : paragraphs.length;
+
+      // 6. Reading Time (~200 words per minute)
+      const readingMinutes = Math.ceil(wordCount / 200);
+      const readingTimeStr = wordCount === 0 ? '0m' : (readingMinutes < 1 ? '< 1m' : `${readingMinutes}m`);
+
+      // 7. Speaking Time (~130 words per minute)
+      const speakingMinutes = Math.ceil(wordCount / 130);
+      const speakingTimeStr = wordCount === 0 ? '0m' : (speakingMinutes < 1 ? '< 1m' : `${speakingMinutes}m`);
+
+      // 8. Average Word Length
+      const avgWordLen = wordCount === 0 ? 0 : (charsNoSpaces / wordCount).toFixed(1);
+
+      // Render to DOM
+      statWords.innerText = wordCount.toLocaleString();
+      statCharsWithSpaces.innerText = charsWithSpaces.toLocaleString();
+      statCharsNoSpaces.innerText = charsNoSpaces.toLocaleString();
+      statSentences.innerText = sentenceCount.toLocaleString();
+      statParagraphs.innerText = paragraphCount.toLocaleString();
+      statReadingTime.innerText = readingTimeStr;
+      statSpeakingTime.innerText = speakingTimeStr;
+      statAvgWordLength.innerText = avgWordLen;
+    }
+
+    // Text Transformations (Case Conversions)
+    function transformText(type) {
+      const current = textInput.value;
+      if (!current) return;
+
+      if (type === 'upper') {
+        textInput.value = current.toUpperCase();
+      } else if (type === 'lower') {
+        textInput.value = current.toLowerCase();
+      } else if (type === 'title') {
+        textInput.value = current.toLowerCase().replace(/(^|\s)\S/g, function(letter) {
+          return letter.toUpperCase();
+        });
+      }
+
+      analyzeText();
+    }
+
+    // Copy to Clipboard with Feedback
+    function copyToClipboard() {
+      if (!textInput.value) return;
+
+      navigator.clipboard.writeText(textInput.value).then(() => {
+        const originalHtml = copyBtn.innerHTML;
+        copyBtn.innerHTML = `
+          <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <span class="text-emerald-700 font-bold">Copied!</span>
+        `;
+        setTimeout(() => {
+          copyBtn.innerHTML = originalHtml;
+        }, 1500);
+      });
+    }
+
+    // Clear Text
+    function clearInputText() {
+      textInput.value = '';
+      analyzeText();
+      textInput.focus();
+    }
+  </script>
+</body>
+</html>
