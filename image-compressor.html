@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>Smart Image Compressor — Compress Images Online Without Server Uploads</title>
+  <meta name="title" content="Smart Image Compressor — Compress Images Online Without Server Uploads">
+  <meta name="description" content="Compress JPG, PNG, and WebP images directly in your browser. Reduce file size by up to 90% with zero quality loss and complete client-side data privacy.">
+  <meta name="keywords" content="image compressor, reduce image size, compress jpg online, compress png, client side image compressor, photo size reducer, compress webp">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/image-compressor.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/image-compressor.html">
+  <meta property="og:title" content="Smart Image Compressor — Fast, Private, In-Browser">
+  <meta property="og:description" content="Reduce image file sizes instantly. 100% client-side compression using HTML5 Canvas.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=630&q=80">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    .ad-pattern {
+      background-color: #f8fafc;
+      background-image: radial-gradient(#cbd5e1 0.75px, transparent 0.75px);
+      background-size: 10px 10px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white flex flex-col min-h-screen">
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Brand Logo -->
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Omni<span class="text-brand-600">Tools</span></span>
+            <span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400 -mt-1">Client-Side Engine</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+          <a href="index.html#tools-section" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">Tools Directory</a>
+          <a href="#tool-instructions" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">How It Works</a>
+          <a href="#seo-article" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">Why Compress?</a>
+        </nav>
+
+        <!-- CTA Back to All Tools -->
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 active:bg-slate-300 rounded-xl transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            All Tools
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= TOP LEADERBOARD AD (BELOW HEADER) ================= -->
+  <div class="w-full bg-slate-100 border-b border-slate-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 flex justify-center">
+      <div class="ad-pattern border border-dashed border-slate-300 rounded-lg w-full max-w-[728px] h-[90px] flex flex-col items-center justify-center text-slate-400">
+        <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+        <span class="text-[11px] text-slate-400">Leaderboard Ad Slot (728x90 / Responsive)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN LAYOUT WITH SIDEBAR ADS ================= -->
+  <div class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex justify-center gap-6 my-6">
+
+    <!-- DESKTOP LEFT SKYSCRAPER AD -->
+    <aside class="hidden xl:block w-[160px] flex-shrink-0">
+      <div class="sticky top-28">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-xl w-[160px] h-[600px] flex flex-col items-center justify-center text-center p-3 text-slate-400 shadow-sm">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <span class="text-[11px] mt-1">Wide Skyscraper (160x600)</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER PRIMARY CONTENT -->
+    <main class="w-full max-w-4xl flex-grow space-y-12">
+
+      <!-- TOOL HEADER -->
+      <section class="text-center pt-4">
+        <!-- Breadcrumb -->
+        <nav class="flex justify-center items-center gap-2 text-xs font-semibold text-slate-400 mb-3">
+          <a href="index.html" class="hover:text-brand-600 transition">Home</a>
+          <span>/</span>
+          <span class="text-slate-700">Image Compressor</span>
+        </nav>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+          Smart Image Compressor
+        </h1>
+        <p class="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal">
+          Compress JPG, PNG, and WebP files instantly right in your browser. Complete client-side security with zero data transmission.
+        </p>
+      </section>
+
+      <!-- ================= INTERACTIVE TOOL WORKSPACE ================= -->
+      <section class="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden p-6 sm:p-10">
+        
+        <!-- DROPZONE (VISIBLE INITIALLY) -->
+        <div 
+          id="dropZone" 
+          class="border-2 border-dashed border-slate-300 hover:border-brand-500 bg-slate-50/70 hover:bg-blue-50/40 rounded-2xl p-8 sm:p-12 text-center transition-all cursor-pointer group"
+          onclick="document.getElementById('fileInput').click()"
+        >
+          <input type="file" id="fileInput" class="hidden" accept="image/jpeg,image/png,image/webp">
+          
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-slate-800">Choose an image or drag & drop here</h3>
+          <p class="text-xs text-slate-500 mt-1.5">Supports JPG, PNG, and WebP (up to 50MB per file)</p>
+          
+          <div class="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-semibold text-sm shadow-md shadow-brand-500/20 transition">
+            Select Local Image
+          </div>
+        </div>
+
+        <!-- CONTROLS & COMPARISON PANEL (HIDDEN UNTIL FILE LOADED) -->
+        <div id="workspacePanel" class="hidden space-y-8">
+          
+          <!-- SETTINGS CONTROLS BAR -->
+          <div class="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+              
+              <!-- Quality Slider -->
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <label for="qualitySlider" class="text-sm font-bold text-slate-800">Compression Quality</label>
+                  <span id="qualityVal" class="text-sm font-extrabold text-brand-600 bg-brand-50 px-2.5 py-0.5 rounded-lg border border-brand-200">75%</span>
+                </div>
+                <input 
+                  type="range" 
+                  id="qualitySlider" 
+                  min="5" 
+                  max="100" 
+                  value="75" 
+                  class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600"
+                >
+                <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                  <span>Smallest Size (Low)</span>
+                  <span>Balanced</span>
+                  <span>Best Quality</span>
+                </div>
+              </div>
+
+              <!-- Output Format & Scale -->
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="outputFormat" class="block text-xs font-bold text-slate-700 mb-1.5">Target Format</label>
+                  <select id="outputFormat" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <option value="original">Preserve Format</option>
+                    <option value="image/jpeg">Convert to JPG</option>
+                    <option value="image/webp">Convert to WebP</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="maxDimension" class="block text-xs font-bold text-slate-700 mb-1.5">Max Resolution</label>
+                  <select id="maxDimension" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <option value="1">Original Size (100%)</option>
+                    <option value="0.75">Scale to 75%</option>
+                    <option value="0.5">Scale to 50%</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-6 flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-200">
+              <button 
+                onclick="resetCompressor()" 
+                class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800 hover:bg-slate-200 rounded-xl transition"
+              >
+                ← Choose Another File
+              </button>
+              
+              <button 
+                id="applyBtn"
+                onclick="triggerCompression()" 
+                class="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 active:bg-brand-800 text-white rounded-xl text-sm font-bold shadow-md shadow-brand-500/20 transition flex items-center gap-2"
+              >
+                <span>Re-compress with New Settings</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- BEFORE & AFTER COMPARISON CARDS -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- ORIGINAL CARD -->
+            <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs uppercase font-extrabold tracking-wider text-slate-500">Original File</span>
+                  <span id="originalFormatBadge" class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-0.5 rounded">PNG</span>
+                </div>
+                
+                <div class="w-full h-56 bg-slate-100 rounded-xl overflow-hidden flex items-center justify-center border border-slate-200/60 p-2">
+                  <img id="originalPreview" src="" alt="Original Preview" class="max-h-full max-w-full object-contain rounded-lg">
+                </div>
+
+                <div class="mt-4 space-y-1 text-sm">
+                  <div class="flex justify-between text-slate-600">
+                    <span>File Size:</span>
+                    <span id="originalSizeText" class="font-bold text-slate-900">-</span>
+                  </div>
+                  <div class="flex justify-between text-slate-600">
+                    <span>Dimensions:</span>
+                    <span id="originalDimensionsText" class="font-medium text-slate-700">-</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMPRESSED CARD -->
+            <div class="bg-white rounded-2xl border-2 border-emerald-500/40 p-4 shadow-md flex flex-col justify-between relative">
+              <div class="absolute -top-3 right-4 bg-emerald-600 text-white text-[11px] font-extrabold px-3 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+                <span id="savingsBadge">-0%</span>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs uppercase font-extrabold tracking-wider text-emerald-700">Compressed Result</span>
+                  <span id="compressedFormatBadge" class="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded">JPG</span>
+                </div>
+                
+                <div class="w-full h-56 bg-slate-100 rounded-xl overflow-hidden flex items-center justify-center border border-slate-200/60 p-2">
+                  <img id="compressedPreview" src="" alt="Compressed Preview" class="max-h-full max-w-full object-contain rounded-lg">
+                </div>
+
+                <div class="mt-4 space-y-1 text-sm">
+                  <div class="flex justify-between text-slate-600">
+                    <span>Optimized Size:</span>
+                    <span id="compressedSizeText" class="font-bold text-emerald-600">-</span>
+                  </div>
+                  <div class="flex justify-between text-slate-600">
+                    <span>New Dimensions:</span>
+                    <span id="compressedDimensionsText" class="font-medium text-slate-700">-</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Download Button -->
+              <div class="mt-6 pt-4 border-t border-slate-100">
+                <a 
+                  id="downloadBtn" 
+                  href="#" 
+                  download="compressed-image.jpg"
+                  class="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white rounded-xl text-sm font-bold flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20 transition"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  Download Compressed Image
+                </a>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ================= IN-ARTICLE AD PLACEHOLDER ================= -->
+      <section class="w-full my-8">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-2xl p-6 flex flex-col items-center justify-center text-center text-slate-400 min-h-[250px]">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <p class="text-xs text-slate-500 mt-1">Responsive Native / In-Feed In-Article Ad Unit</p>
+          <div class="mt-2 text-[11px] text-slate-400">(300x250, 336x280, or Fluid)</div>
+        </div>
+      </section>
+
+      <!-- ================= 300+ WORDS SEO OPTIMIZED CONTENT ================= -->
+      <section id="seo-article" class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200/80 shadow-xs prose max-w-none text-slate-600">
+        <div class="max-w-3xl">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-4">
+            How Client-Side Image Compression Works in Your Browser
+          </h2>
+          
+          <p class="text-sm sm:text-base leading-relaxed mb-4">
+            Image optimization is one of the most critical aspects of modern web performance, user engagement, and SEO ranking. Heavy, unoptimized high-resolution photos can degrade website speed, inflate cellular data costs for mobile visitors, and damage Google Core Web Vitals scores—specifically Largest Contentful Paint (LCP). OmniTools' Smart Image Compressor solves this challenge completely by compressing photographs, logos, and digital artwork directly inside your local browser runtime.
+          </p>
+
+          <h3 class="text-lg sm:text-xl font-bold text-slate-800 mt-6 mb-3">
+            Lossy vs. Lossless Canvas Optimization Explained
+          </h3>
+          <p class="text-sm sm:text-base leading-relaxed mb-4">
+            Our tool utilizes the high-performance HTML5 Canvas rendering engine and hardware-accelerated rasterization. When you load an image, it is decoded into high-fidelity pixel matrices in your computer's RAM. By fine-tuning our interactive compression quality slider from 0% to 100%, you control the discrete cosine transformation (DCT) and quantization tables that govern formats like JPEG and WebP. This enables dramatic file size reductions of up to 70% to 90% while maintaining visual sharpness imperceptible to the human eye.
+          </p>
+
+          <h3 class="text-lg sm:text-xl font-bold text-slate-800 mt-6 mb-3">
+            Complete Confidentiality: Zero Server Uploads
+          </h3>
+          <p class="text-sm sm:text-base leading-relaxed mb-4">
+            Conventional web compressors force you to upload personal photographs, financial scans, and sensitive business documentation to remote third-party cloud servers. This exposes you to potential data interception and privacy violations. With OmniTools, no image file ever leaves your device. Every single calculation, downscale algorithm, and binary blob generation is executed strictly client-side via JavaScript. You can even disconnect your internet entirely after opening this page and compress as many images as you need without interruption.
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- DESKTOP RIGHT SKYSCRAPER AD -->
+    <aside class="hidden xl:block w-[160px] flex-shrink-0">
+      <div class="sticky top-28">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-xl w-[160px] h-[600px] flex flex-col items-center justify-center text-center p-3 text-slate-400 shadow-sm">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <span class="text-[11px] mt-1">Wide Skyscraper (160x600)</span>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ================= BOTTOM LEADERBOARD AD (ABOVE FOOTER) ================= -->
+  <div class="w-full bg-slate-100 border-t border-slate-200 py-4 mt-12">
+    <div class="max-w-7xl mx-auto px-4 flex justify-center">
+      <div class="ad-pattern border border-dashed border-slate-300 rounded-lg w-full max-w-[728px] h-[90px] flex flex-col items-center justify-center text-slate-400">
+        <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+        <span class="text-[11px] text-slate-400">Leaderboard / Large Mobile Banner (728x90)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PROCESSING MODAL WITH INTEGRATED AD ================= -->
+  <div id="processingModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-white rounded-3xl max-w-md w-full mx-4 p-6 shadow-2xl border border-slate-100 flex flex-col items-center text-center transform scale-95 transition-transform duration-300" id="modalCard">
+      
+      <!-- Processing Spinner Animation -->
+      <div class="relative w-16 h-16 my-2">
+        <div class="absolute inset-0 rounded-full border-4 border-slate-100"></div>
+        <div class="absolute inset-0 rounded-full border-4 border-brand-600 border-t-transparent animate-spin"></div>
+      </div>
+
+      <h4 class="text-lg font-bold text-slate-900 mt-3">Compressing Image Locally...</h4>
+      <p class="text-xs text-slate-500 mt-1 mb-4">Executing canvas quantization in client memory.</p>
+
+      <!-- Processing State Ad Placement -->
+      <div class="w-full my-3">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-xl w-full h-[250px] flex flex-col items-center justify-center text-slate-400 p-2">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <span class="text-[11px] text-slate-400">Medium Rectangle Ad (300x250)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-white border-t border-slate-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Logo & Copyright Notice -->
+        <div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-sm">O</div>
+            <span class="font-extrabold text-slate-900">OmniTools</span>
+          </div>
+          <span class="hidden sm:inline text-slate-300">|</span>
+          <p class="text-xs text-slate-500">© 2025 OmniTools Inc. All files remain strictly on client machine.</p>
+        </div>
+
+        <!-- STRICT FOOTER ATTRIBUTION -->
+        <div class="text-sm font-semibold text-slate-700 bg-slate-50 px-4 py-2 rounded-xl border border-slate-200">
+          Developed by <a href="https://www.facebook.com/m.rakibmazhar/" target="_blank" rel="noopener noreferrer" class="text-brand-600 hover:text-brand-700 hover:underline">MI Rakib</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= CLIENT-SIDE COMPRESSION JAVASCRIPT ================= -->
+  <script>
+    // State Variables
+    let currentRawFile = null;
+    let originalImageObj = new Image();
+    let originalDataURL = "";
+    let compressedBlobURL = "";
+
+    // DOM Elements
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const workspacePanel = document.getElementById('workspacePanel');
+    const qualitySlider = document.getElementById('qualitySlider');
+    const qualityVal = document.getElementById('qualityVal');
+    const outputFormat = document.getElementById('outputFormat');
+    const maxDimension = document.getElementById('maxDimension');
+
+    const originalPreview = document.getElementById('originalPreview');
+    const originalSizeText = document.getElementById('originalSizeText');
+    const originalDimensionsText = document.getElementById('originalDimensionsText');
+    const originalFormatBadge = document.getElementById('originalFormatBadge');
+
+    const compressedPreview = document.getElementById('compressedPreview');
+    const compressedSizeText = document.getElementById('compressedSizeText');
+    const compressedDimensionsText = document.getElementById('compressedDimensionsText');
+    const compressedFormatBadge = document.getElementById('compressedFormatBadge');
+    const savingsBadge = document.getElementById('savingsBadge');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    // Sync Quality Slider Value Label
+    qualitySlider.addEventListener('input', (e) => {
+      qualityVal.innerText = `${e.target.value}%`;
+    });
+
+    // Drag and Drop Event Listeners
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropZone.classList.add('border-brand-500', 'bg-blue-50/50');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('border-brand-500', 'bg-blue-50/50');
+      }, false);
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      const files = e.dataTransfer.files;
+      if (files.length > 0 && files[0].type.startsWith('image/')) {
+        handleFileSelected(files[0]);
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        handleFileSelected(e.target.files[0]);
+      }
+    });
+
+    // File Selection Handler
+    function handleFileSelected(file) {
+      currentRawFile = file;
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        originalDataURL = e.target.result;
+        originalImageObj = new Image();
+        originalImageObj.onload = () => {
+          // Populate Original Metadata
+          originalPreview.src = originalDataURL;
+          originalSizeText.innerText = formatBytes(currentRawFile.size);
+          originalDimensionsText.innerText = `${originalImageObj.naturalWidth} × ${originalImageObj.naturalHeight} px`;
+          originalFormatBadge.innerText = currentRawFile.type.replace('image/', '').toUpperCase() || 'IMG';
+
+          // Reveal Workspace
+          dropZone.classList.add('hidden');
+          workspacePanel.classList.remove('hidden');
+
+          // Trigger Initial Compression
+          triggerCompression();
+        };
+        originalImageObj.src = originalDataURL;
+      };
+
+      reader.readAsDataURL(file);
+    }
+
+    // Modal Control Functions
+    function toggleModal(show) {
+      const modal = document.getElementById('processingModal');
+      const card = document.getElementById('modalCard');
+      if (show) {
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+          modal.classList.remove('opacity-0');
+          card.classList.remove('scale-95');
+          card.classList.add('scale-100');
+        }, 10);
+      } else {
+        modal.classList.add('opacity-0');
+        card.classList.remove('scale-100');
+        card.classList.add('scale-95');
+        setTimeout(() => {
+          modal.classList.add('hidden');
+        }, 300);
+      }
+    }
+
+    // Trigger Compression with Processing Modal Feedback
+    function triggerCompression() {
+      if (!currentRawFile || !originalImageObj.src) return;
+
+      // Show Processing Modal & Ad
+      toggleModal(true);
+
+      // Smooth timeout to ensure browser paints modal and ad impression is clearly visible
+      setTimeout(() => {
+        executeCanvasCompression();
+        toggleModal(false);
+      }, 700);
+    }
+
+    // Canvas Compression Core Logic
+    function executeCanvasCompression() {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      const scale = parseFloat(maxDimension.value);
+      const targetWidth = Math.round(originalImageObj.naturalWidth * scale);
+      const targetHeight = Math.round(originalImageObj.naturalHeight * scale);
+
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
+
+      // Determine Target MIME Type
+      let mimeType = outputFormat.value;
+      if (mimeType === 'original') {
+        mimeType = currentRawFile.type;
+        // If original is PNG, fallback to JPEG if user wants to compress size, otherwise keep WebP/JPEG
+        if (mimeType === 'image/png') {
+          mimeType = 'image/jpeg'; // Standard web behavior: lossless PNGs cannot be quality-compressed without JPEG/WebP conversion
+        }
+      }
+
+      // Fill white background for transparent images converted to JPEG
+      if (mimeType === 'image/jpeg') {
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, targetWidth, targetHeight);
+      }
+
+      // Draw and resample image onto canvas
+      ctx.drawImage(originalImageObj, 0, 0, targetWidth, targetHeight);
+
+      // Quality factor (0.01 to 1.0)
+      const qualityFactor = parseInt(qualitySlider.value, 10) / 100;
+
+      // Export to Blob
+      canvas.toBlob((blob) => {
+        if (!blob) return;
+
+        // Revoke prior ObjectURL to prevent memory leaks
+        if (compressedBlobURL) {
+          URL.revokeObjectURL(compressedBlobURL);
+        }
+
+        compressedBlobURL = URL.createObjectURL(blob);
+        compressedPreview.src = compressedBlobURL;
+        compressedSizeText.innerText = formatBytes(blob.size);
+        compressedDimensionsText.innerText = `${targetWidth} × ${targetHeight} px`;
+
+        // Calculate Savings %
+        const originalBytes = currentRawFile.size;
+        const newBytes = blob.size;
+        const diffPercent = Math.round(((originalBytes - newBytes) / originalBytes) * 100);
+
+        if (diffPercent > 0) {
+          savingsBadge.innerText = `-${diffPercent}% Smaller`;
+          savingsBadge.className = 'bg-emerald-600 text-white text-[11px] font-extrabold px-3 py-0.5 rounded-full shadow-sm flex items-center gap-1';
+        } else {
+          savingsBadge.innerText = `+${Math.abs(diffPercent)}% Larger`;
+          savingsBadge.className = 'bg-amber-600 text-white text-[11px] font-extrabold px-3 py-0.5 rounded-full shadow-sm flex items-center gap-1';
+        }
+
+        // Set Extension & Download attributes
+        const extension = mimeType === 'image/webp' ? 'webp' : (mimeType === 'image/png' ? 'png' : 'jpg');
+        compressedFormatBadge.innerText = extension.toUpperCase();
+        
+        const originalBaseName = currentRawFile.name.substring(0, currentRawFile.name.lastIndexOf('.')) || 'image';
+        downloadBtn.download = `${originalBaseName}-optimized.${extension}`;
+        downloadBtn.href = compressedBlobURL;
+
+      }, mimeType, qualityFactor);
+    }
+
+    // Reset Tool to Upload State
+    function resetCompressor() {
+      currentRawFile = null;
+      fileInput.value = '';
+      if (compressedBlobURL) {
+        URL.revokeObjectURL(compressedBlobURL);
+        compressedBlobURL = '';
+      }
+      workspacePanel.classList.add('hidden');
+      dropZone.classList.remove('hidden');
+    }
+
+    // Helper: Convert Bytes to Human-Readable Size
+    function formatBytes(bytes, decimals = 2) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const dm = decimals < 0 ? 0 : decimals;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    }
+  </script>
+</body>
+</html>
