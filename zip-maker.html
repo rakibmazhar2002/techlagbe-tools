@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>ZIP Maker & Folder to ZIP — Free Online Archive Creator</title>
+  <meta name="title" content="ZIP Maker & Folder to ZIP — Free Online Archive Creator">
+  <meta name="description" content="Package multiple files or entire folder directories into a compressed .zip archive directly in your browser. 100% private client-side processing with zero server uploads.">
+  <meta name="keywords" content="zip maker, folder to zip, create zip online, zip files in browser, client side zip generator, online archive maker, free file compressor">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/zip-maker.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/zip-maker.html">
+  <meta property="og:title" content="ZIP Maker & Folder to ZIP — Fast, Secure & Free">
+  <meta property="og:description" content="Create ZIP archives and convert entire folders to ZIP directly inside your browser. No files are ever sent to a server.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=630&q=80">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- JSZip Library (Client-Side ZIP Engine) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  
+  <style>
+    .ad-pattern {
+      background-color: #f8fafc;
+      background-image: radial-gradient(#cbd5e1 0.75px, transparent 0.75px);
+      background-size: 10px 10px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white flex flex-col min-h-screen">
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Brand Logo -->
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Omni<span class="text-brand-600">Tools</span></span>
+            <span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400 -mt-1">Client-Side Engine</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+          <a href="index.html#tools-section" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">Tools Directory</a>
+          <a href="#how-it-works" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">How It Works</a>
+          <a href="#seo-article" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">Archive Benefits</a>
+        </nav>
+
+        <!-- CTA Back to All Tools -->
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 active:bg-slate-300 rounded-xl transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            All Tools
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= TOP LEADERBOARD AD (BELOW HEADER) ================= -->
+  <div class="w-full bg-slate-100 border-b border-slate-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 flex justify-center">
+      <div class="ad-pattern border border-dashed border-slate-300 rounded-lg w-full max-w-[728px] h-[90px] flex flex-col items-center justify-center text-slate-400">
+        <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+        <span class="text-[11px] text-slate-400">Leaderboard Ad Slot (728x90 / Responsive)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN LAYOUT WITH SIDEBAR ADS ================= -->
+  <div class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex justify-center gap-6 my-6">
+
+    <!-- DESKTOP LEFT SKYSCRAPER AD -->
+    <aside class="hidden xl:block w-[160px] flex-shrink-0">
+      <div class="sticky top-28">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-xl w-[160px] h-[600px] flex flex-col items-center justify-center text-center p-3 text-slate-400 shadow-sm">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <span class="text-[11px] mt-1">Wide Skyscraper (160x600)</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER PRIMARY CONTENT -->
+    <main class="w-full max-w-4xl flex-grow space-y-12">
+
+      <!-- TOOL HEADER -->
+      <section class="text-center pt-4">
+        <!-- Breadcrumb -->
+        <nav class="flex justify-center items-center gap-2 text-xs font-semibold text-slate-400 mb-3">
+          <a href="index.html" class="hover:text-brand-600 transition">Home</a>
+          <span>/</span>
+          <span class="text-slate-700">ZIP Maker & Folder to ZIP</span>
+        </nav>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+          ZIP Maker & Folder to ZIP
+        </h1>
+        <p class="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal">
+          Compress individual files or entire directory folders into a single .zip file. 100% in-browser generation with zero server transfers.
+        </p>
+      </section>
+
+      <!-- ================= INTERACTIVE TOOL WORKSPACE ================= -->
+      <section class="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden p-6 sm:p-10">
+        
+        <!-- DUAL SELECTION DROPZONE (FILES OR FOLDERS) -->
+        <div 
+          id="dropZone" 
+          class="border-2 border-dashed border-slate-300 hover:border-amber-500 bg-slate-50/70 hover:bg-amber-50/30 rounded-2xl p-8 sm:p-12 text-center transition-all group"
+        >
+          <!-- Hidden inputs for Files vs Folder -->
+          <input type="file" id="fileInput" class="hidden" multiple>
+          <input type="file" id="folderInput" class="hidden" webkitdirectory directory multiple>
+          
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+            </svg>
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-800">Drag & drop files or entire folders here</h3>
+          <p class="text-xs text-slate-500 mt-1.5">No file size limits. Archive structures are built dynamically in your RAM.</p>
+          
+          <!-- Explicit selection buttons -->
+          <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <button 
+              type="button" 
+              onclick="document.getElementById('fileInput').click()" 
+              class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 active:bg-brand-800 text-white rounded-xl font-semibold text-sm shadow-md shadow-brand-500/20 transition flex items-center gap-2"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Select Files
+            </button>
+
+            <button 
+              type="button" 
+              onclick="document.getElementById('folderInput').click()" 
+              class="px-5 py-2.5 bg-amber-600 hover:bg-amber-700 active:bg-amber-800 text-white rounded-xl font-semibold text-sm shadow-md shadow-amber-600/20 transition flex items-center gap-2"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+              </svg>
+              Select Entire Folder
+            </button>
+          </div>
+        </div>
+
+        <!-- CONTROLS & FILE QUEUE LIST (VISIBLE ONCE FILES ARE ADDED) -->
+        <div id="workspacePanel" class="hidden space-y-6 mt-8">
+          
+          <!-- ARCHIVE SETTINGS -->
+          <div class="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              
+              <!-- Archive Name Input -->
+              <div>
+                <label for="archiveName" class="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
+                  ZIP Archive Filename
+                </label>
+                <div class="relative flex items-center">
+                  <input 
+                    type="text" 
+                    id="archiveName" 
+                    value="archive" 
+                    class="w-full bg-white border border-slate-300 rounded-xl pl-3.5 pr-12 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 shadow-xs"
+                    placeholder="my-archive"
+                  >
+                  <span class="absolute right-3.5 text-xs font-bold text-slate-400 select-none">.zip</span>
+                </div>
+              </div>
+
+              <!-- Compression Quality Level -->
+              <div>
+                <label for="compressionLevel" class="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
+                  Compression Method
+                </label>
+                <select 
+                  id="compressionLevel" 
+                  class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 shadow-xs"
+                >
+                  <option value="6">Deflate — Normal (Recommended)</option>
+                  <option value="9">Deflate — Maximum Compression</option>
+                  <option value="1">Deflate — Fast / Light</option>
+                  <option value="0">Store — No Compression (Fastest)</option>
+                </select>
+              </div>
+
+            </div>
+
+            <!-- Queue Stats Toolbar -->
+            <div class="mt-5 pt-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-4 text-xs font-semibold text-slate-600">
+                <span>Files Queued: <strong id="totalCount" class="text-brand-600 font-extrabold text-sm">0</strong></span>
+                <span>Uncompressed Total: <strong id="totalRawSize" class="text-slate-800 font-bold">0 Bytes</strong></span>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button 
+                  type="button" 
+                  onclick="document.getElementById('fileInput').click()" 
+                  class="px-3 py-1.5 text-xs font-semibold text-brand-600 bg-brand-50 hover:bg-brand-100 rounded-lg border border-brand-200 transition"
+                >
+                  + Add Files
+                </button>
+                <button 
+                  type="button" 
+                  onclick="clearAllQueue()" 
+                  class="px-3 py-1.5 text-xs font-semibold text-rose-600 hover:bg-rose-50 rounded-lg transition"
+                >
+                  Clear All
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- FILE TABLE / LIST -->
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Queued Contents / Path Tree</span>
+              <span class="text-xs text-slate-400">Relative directory paths preserved</span>
+            </div>
+
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-xs">
+              <div class="max-h-72 overflow-y-auto divide-y divide-slate-100" id="filesListContainer">
+                <!-- Dynamically populated files -->
+              </div>
+            </div>
+          </div>
+
+          <!-- CREATE ZIP ACTION CTA -->
+          <div class="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-end gap-4">
+            <button 
+              id="buildZipBtn" 
+              onclick="buildAndDownloadZip()" 
+              class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 active:from-amber-800 text-white rounded-xl text-base font-bold shadow-lg shadow-amber-500/25 transition flex items-center justify-center gap-2"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Build & Download ZIP
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ================= IN-ARTICLE AD PLACEHOLDER ================= -->
+      <section class="w-full my-8">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-2xl p-6 flex flex-col items-center justify-center text-center text-slate-400 min-h-[250px]">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <p class="text-xs text-slate-500 mt-1">Responsive Native / In-Feed In-Article Ad Unit</p>
+          <div class="mt-2 text-[11px] text-slate-400">(300x250, 336x280, or Fluid)</div>
+        </div>
+      </section>
+
+      <!-- ================= 300+ WORDS SEO OPTIMIZED CONTENT ================= -->
+      <section id="seo-article" class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200/80 shadow-xs prose max-w-none text-slate-600">
+        <div class="max-w-3xl">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-4">
+            Create ZIP Files and Archive Folders Online with Total Privacy
+          </h2>
+          
+          <p class="text-sm sm:text-base leading-relaxed mb-4">
+            The ZIP file format remains the universal standard for digital archiving, document grouping, and data distribution across Windows, macOS, Linux, Android, and iOS. Whether bundling client deliverables, preparing multiple source code repositories, or packaging heavy sets of PDFs for email transmission, an organized ZIP archive eliminates file clutter. OmniTools brings native archiving capabilities directly to your browser without requiring command-line tools or bloated desktop software.
+          </p>
+
+          <h3 class="text-lg sm:text-xl font-bold text-slate-800 mt-6 mb-3">
+            Effortless Folder to ZIP: Preserve Full Directory Trees
+          </h3>
+          <p class="text-sm sm:text-base leading-relaxed mb-4">
+            Most generic online zip utilities only allow you to pick individual detached files, destroying folder hierarchies and file associations in the process. Our tool leverages the modern HTML5 WebKit Directory API (`webkitdirectory`), allowing you to select an entire folder containing nested subdirectories, configuration files, and assets. OmniTools reads the relative file pathing of every item and reconstructs the exact directory tree inside the generated ZIP file. When the recipient extracts the archive, all folder structures remain completely intact.
+          </p>
+
+          <h3 class="text-lg sm:text-xl font-bold text-slate-800 mt-6 mb-3">
+            Client-Side Performance: Zero Data Transfers to Cloud Servers
+          </h3>
+          <p class="text-sm sm:text-base leading-relaxed mb-4">
+            Traditional web converters require you to upload your sensitive projects, proprietary intellectual property, and personal file catalogs to third-party cloud servers. This introduces network latency, consumes gigabytes of upstream broadband, and poses significant cybersecurity risks. OmniTools operates completely on the client side using pure JavaScript and the JSZip engine. All file stream indexing, Deflate compression algorithms, and binary blob generation execute in your device’s local memory (RAM). Your files never leave your computer, ensuring absolute privacy, zero file limits, and instant speeds.
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- DESKTOP RIGHT SKYSCRAPER AD -->
+    <aside class="hidden xl:block w-[160px] flex-shrink-0">
+      <div class="sticky top-28">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-xl w-[160px] h-[600px] flex flex-col items-center justify-center text-center p-3 text-slate-400 shadow-sm">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <span class="text-[11px] mt-1">Wide Skyscraper (160x600)</span>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ================= BOTTOM LEADERBOARD AD (ABOVE FOOTER) ================= -->
+  <div class="w-full bg-slate-100 border-t border-slate-200 py-4 mt-12">
+    <div class="max-w-7xl mx-auto px-4 flex justify-center">
+      <div class="ad-pattern border border-dashed border-slate-300 rounded-lg w-full max-w-[728px] h-[90px] flex flex-col items-center justify-center text-slate-400">
+        <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+        <span class="text-[11px] text-slate-400">Leaderboard / Large Mobile Banner (728x90)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PROCESSING MODAL WITH INTEGRATED AD ================= -->
+  <div id="processingModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-white rounded-3xl max-w-md w-full mx-4 p-6 shadow-2xl border border-slate-100 flex flex-col items-center text-center transform scale-95 transition-transform duration-300" id="modalCard">
+      
+      <!-- Processing Spinner Animation -->
+      <div class="relative w-16 h-16 my-2">
+        <div class="absolute inset-0 rounded-full border-4 border-slate-100"></div>
+        <div class="absolute inset-0 rounded-full border-4 border-amber-500 border-t-transparent animate-spin"></div>
+      </div>
+
+      <h4 class="text-lg font-bold text-slate-900 mt-3" id="modalStatusText">Packaging ZIP Archive...</h4>
+      <p class="text-xs text-slate-500 mt-1 mb-2" id="modalProgressText">Compressing file streams in browser RAM: 0%</p>
+
+      <!-- Processing State Ad Placement -->
+      <div class="w-full my-3">
+        <div class="ad-pattern border border-dashed border-slate-300 rounded-xl w-full h-[250px] flex flex-col items-center justify-center text-slate-400 p-2">
+          <span class="text-xs uppercase tracking-widest font-bold">Advertisement</span>
+          <span class="text-[11px] text-slate-400">Medium Rectangle Ad (300x250)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-white border-t border-slate-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Logo & Copyright Notice -->
+        <div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-sm">O</div>
+            <span class="font-extrabold text-slate-900">OmniTools</span>
+          </div>
+          <span class="hidden sm:inline text-slate-300">|</span>
+          <p class="text-xs text-slate-500">© 2025 OmniTools Inc. All files remain strictly on client machine.</p>
+        </div>
+
+        <!-- STRICT MANDATORY FOOTER ATTRIBUTION -->
+        <div class="text-sm font-semibold text-slate-700 bg-slate-50 px-4 py-2 rounded-xl border border-slate-200">
+          Developed by <a href="https://www.facebook.com/m.rakibmazhar/" target="_blank" rel="noopener noreferrer" class="text-brand-600 hover:text-brand-700 hover:underline">MI Rakib</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= CLIENT-SIDE JSZIP JAVASCRIPT ================= -->
+  <script>
+    // In-memory queue of files: { id, file, relativePath, size }
+    let fileQueue = [];
+
+    // DOM Elements
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const folderInput = document.getElementById('folderInput');
+    const workspacePanel = document.getElementById('workspacePanel');
+    const filesListContainer = document.getElementById('filesListContainer');
+    const totalCount = document.getElementById('totalCount');
+    const totalRawSize = document.getElementById('totalRawSize');
+    const archiveName = document.getElementById('archiveName');
+    const compressionLevel = document.getElementById('compressionLevel');
+
+    const modalStatusText = document.getElementById('modalStatusText');
+    const modalProgressText = document.getElementById('modalProgressText');
+
+    // Drag and Drop Listeners
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropZone.classList.add('border-amber-500', 'bg-amber-50/50');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('border-amber-500', 'bg-amber-50/50');
+      }, false);
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      const items = e.dataTransfer.items;
+      if (items && items.length > 0) {
+        // Fallback or standard files extraction
+        const droppedFiles = Array.from(e.dataTransfer.files);
+        if (droppedFiles.length > 0) {
+          addFilesToQueue(droppedFiles, false);
+        }
+      }
+    });
+
+    // File Input Listener
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        addFilesToQueue(Array.from(e.target.files), false);
+        fileInput.value = '';
+      }
+    });
+
+    // Folder Input Listener (Preserves relative directory paths)
+    folderInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        const files = Array.from(e.target.files);
+        
+        // Auto-assign folder root name to archive input if available
+        if (files[0].webkitRelativePath) {
+          const rootFolder = files[0].webkitRelativePath.split('/')[0];
+          if (rootFolder) {
+            archiveName.value = rootFolder;
+          }
+        }
+        
+        addFilesToQueue(files, true);
+        folderInput.value = '';
+      }
+    });
+
+    // Add Files into Queue
+    function addFilesToQueue(files, isFolderMode) {
+      files.forEach(f => {
+        // Resolve relative path: if folder mode, webkitRelativePath contains subfolders
+        const path = (isFolderMode && f.webkitRelativePath) ? f.webkitRelativePath : f.name;
+
+        // Prevent exact duplicates in queue
+        const exists = fileQueue.some(item => item.relativePath === path && item.size === f.size);
+        if (!exists) {
+          fileQueue.push({
+            id: Date.now() + Math.random().toString(36).substring(2, 9),
+            file: f,
+            relativePath: path,
+            size: f.size
+          });
+        }
+      });
+
+      renderQueueList();
+    }
+
+    // Render Queued Files UI
+    function renderQueueList() {
+      if (fileQueue.length === 0) {
+        workspacePanel.classList.add('hidden');
+        return;
+      }
+
+      workspacePanel.classList.remove('hidden');
+      filesListContainer.innerHTML = '';
+
+      let totalBytes = 0;
+
+      fileQueue.forEach((item, index) => {
+        totalBytes += item.size;
+
+        const row = document.createElement('div');
+        row.className = "px-4 py-3 flex items-center justify-between text-xs hover:bg-slate-50 transition";
+        row.innerHTML = `
+          <div class="flex items-center gap-3 min-w-0 pr-3">
+            <span class="text-slate-400 font-mono text-[10px] w-5 text-right">${index + 1}</span>
+            <svg class="w-4 h-4 text-amber-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/>
+            </svg>
+            <div class="min-w-0">
+              <p class="font-medium text-slate-800 truncate" title="${item.relativePath}">${item.relativePath}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 flex-shrink-0">
+            <span class="text-slate-500 font-medium">${formatBytes(item.size)}</span>
+            <button 
+              type="button" 
+              onclick="removeFromQueue('${item.id}')" 
+              class="text-slate-400 hover:text-rose-600 transition p-1"
+              title="Remove file"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        `;
+        filesListContainer.appendChild(row);
+      });
+
+      totalCount.innerText = fileQueue.length;
+      totalRawSize.innerText = formatBytes(totalBytes);
+    }
+
+    // Remove item from queue
+    function removeFromQueue(id) {
+      fileQueue = fileQueue.filter(item => item.id !== id);
+      renderQueueList();
+    }
+
+    // Clear all
+    function clearAllQueue() {
+      fileQueue = [];
+      renderQueueList();
+    }
+
+    // Modal Control Functions
+    function toggleModal(show) {
+      const modal = document.getElementById('processingModal');
+      const card = document.getElementById('modalCard');
+      if (show) {
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+          modal.classList.remove('opacity-0');
+          card.classList.remove('scale-95');
+          card.classList.add('scale-100');
+        }, 10);
+      } else {
+        modal.classList.add('opacity-0');
+        card.classList.remove('scale-100');
+        card.classList.add('scale-95');
+        setTimeout(() => {
+          modal.classList.add('hidden');
+        }, 300);
+      }
+    }
+
+    // Build ZIP Archive using JSZip
+    function buildAndDownloadZip() {
+      if (fileQueue.length === 0) return;
+
+      // Show processing modal with ad
+      modalStatusText.innerText = "Packaging ZIP Archive...";
+      modalProgressText.innerText = "Preparing files in browser RAM: 0%";
+      toggleModal(true);
+
+      // Short delay to paint ad and start JSZip
+      setTimeout(() => {
+        const zip = new JSZip();
+
+        // Append every queued file according to its relative path tree
+        fileQueue.forEach(item => {
+          zip.file(item.relativePath, item.file);
+        });
+
+        const level = parseInt(compressionLevel.value, 10);
+        const compressionType = level === 0 ? "STORE" : "DEFLATE";
+
+        // Generate binary ZIP blob with progress callback
+        zip.generateAsync(
+          {
+            type: "blob",
+            compression: compressionType,
+            compressionOptions: {
+              level: level
+            }
+          },
+          function updateCallback(metadata) {
+            const percent = Math.round(metadata.percent);
+            modalProgressText.innerText = `Compressing file streams: ${percent}%`;
+          }
+        )
+        .then(function(blob) {
+          // Determine sanitized archive filename
+          let name = archiveName.value.trim() || 'archive';
+          if (!name.toLowerCase().endsWith('.zip')) {
+            name += '.zip';
+          }
+
+          // Trigger browser download via temporary anchor
+          const downloadUrl = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = downloadUrl;
+          link.download = name;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          // Clean up blob URL & dismiss modal
+          setTimeout(() => {
+            URL.revokeObjectURL(downloadUrl);
+            toggleModal(false);
+          }, 800);
+        })
+        .catch(function(err) {
+          console.error("ZIP building error:", err);
+          alert("An error occurred while creating the ZIP archive.");
+          toggleModal(false);
+        });
+
+      }, 600);
+    }
+
+    // Helper: Format Bytes to Human-Readable Size
+    function formatBytes(bytes) {
+      if (!bytes || bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return (bytes / Math.pow(k, i)).toFixed(2) + ' ' + sizes[i];
+    }
+  </script>
+</body>
+</html>
